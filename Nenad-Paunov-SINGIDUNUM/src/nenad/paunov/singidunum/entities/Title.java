@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -17,13 +18,14 @@ import javax.validation.constraints.Size;
 public class Title {
 	@Id
 	@GeneratedValue
-	@Column(name = "title_id")
+	@Column(name = "TitleId")
 	private int titleId;
 	@NotNull(message = "Title name cannot be null")
 	@Size(min = 2, max = 30, message = "Title name must be between 2 and 30 characters")
-	@Column(name = "title_name")
+	@Column(name = "TitleName")
 	private String titleName;
 	@OneToMany
+	@JoinColumn(name = "Id")
 	private List<Professor> professors = new ArrayList<Professor>();
 	
 	public int getTitleId() {

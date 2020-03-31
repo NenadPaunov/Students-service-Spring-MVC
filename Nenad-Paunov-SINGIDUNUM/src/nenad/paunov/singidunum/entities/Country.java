@@ -17,13 +17,14 @@ import javax.validation.constraints.Size;
 public class Country {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "country_id")
+	@Column(name = "CountryId")
 	private int countryId;
 	@NotNull(message = "Country name cannot be null")
 	@Size(min = 2, max = 30, message = "Country name must be between 2 and 30 characters")
+	@Column(name = "Name")
 	private String name;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "country_id")
+	@JoinColumn(name = "CountryId")
 	private City city;
 
 	public int getCountryId() {
