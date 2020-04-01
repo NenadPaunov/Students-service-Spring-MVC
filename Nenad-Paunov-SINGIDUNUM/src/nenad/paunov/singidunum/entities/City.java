@@ -20,21 +20,21 @@ import javax.validation.constraints.Size;
 @Table(name = "Cities")
 public class City {
 	@Id
-	@Size(max=7)
+	@Size(max = 7)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CityId")
 	private int cityId;
 	@NotNull(message = "City name cannot be null")
 	@Size(min = 2, max = 30, message = "City name must be between 2 and 30 characters")
-	@Column(name="Name")
+	@Column(name = "Name")
 	private String name;
 	@Size(min = 2, max = 10, message = "Zip code lenght must be between 2 and 10 characters")
 	@Column(name = "ZipCode")
 	private String zipCode;
-	@ManyToOne
-	@JoinColumn(name = "CountryId")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CityId")
 	private List<Country> countries = new ArrayList<Country>();
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "Id")
 	private Person person;
 
@@ -60,11 +60,6 @@ public class City {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
-	}
-
-	@Override
-	public String toString() {
-		return "City [cityId=" + cityId + ", name=" + name + ", zipCode=" + zipCode + "]";
 	}
 
 }

@@ -12,7 +12,7 @@ public class StudentsDao {
 	@Autowired
 	SessionFactory session;
 	
-	public List<Student> list() {
+	public List<Student> getAllStudents() {
 		return session.getCurrentSession().createQuery("from Student").list();
 	}
 }
