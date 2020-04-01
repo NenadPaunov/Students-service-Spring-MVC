@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>Nesto</p>
-	<a href="${pageContext.request.contextPath }/students">Students</a>
+	<p>Home page</p>
+	<a href="${pageContext.request.contextPath }/students">Students</a><br> <br> 
+	<a href="${pageContext.request.contextPath }/studentsroles">Show all
+					students</a> <br> <br> 
 </body>
 </html>

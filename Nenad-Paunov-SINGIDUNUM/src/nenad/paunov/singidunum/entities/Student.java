@@ -41,6 +41,10 @@ public class Student extends Person {
 	public void setCurrentYearOfStudy(int currentYearOfStudy) {
 		this.currentYearOfStudy = currentYearOfStudy;
 	}
+	@Override
+	public String toString() {
+		return "Student [indexNumber=" + indexNumber + ", currentYearOfStudy=" + currentYearOfStudy;
+	}
 	
 	
 }

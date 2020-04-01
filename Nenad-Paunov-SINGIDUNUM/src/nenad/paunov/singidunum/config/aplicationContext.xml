@@ -16,7 +16,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- Enable autowire -->
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan
-		base-package="nenad.paunov.singidunum.dao"></context:component-scan>
+		base-package="nenad.paunov.singidunum.dao">
+	</context:component-scan>
 
 	<mvc:annotation-driven></mvc:annotation-driven>
 
@@ -41,12 +42,12 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		<property name="hibernateProperties">
 			<props>
 				<!-- SQL Dialect -->
-				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle8iDialect</prop>
 
 				<!-- Your required Database Name -->
-				<prop key="hibernate.default_schema">tests</prop>
-
-				<prop key="hbm2ddl.auto">drop-and-create</prop>
+			<!-- 	<prop key="hibernate.default_schema">tests</prop> -->
+			<!-- 	<prop key="hibernate.hbm2ddl.auto">drop-and-create</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 				<prop key="format_sql">true</prop>
