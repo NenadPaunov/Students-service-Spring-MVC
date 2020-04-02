@@ -1,5 +1,8 @@
 package nenad.paunov.singidunum.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +27,10 @@ public class Country {
 	@Size(min = 2, max = 30, message = "Country name must be between 2 and 30 characters")
 	@Column(name = "Name")
 	private String name;
-	@ManyToOne
-	@JoinColumn(name = "CityId")
-	private City city;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CountryId")
+	private List<City> cities = new ArrayList<City>();
+	
 
 	public int getCountryId() {
 		return countryId;

@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 @Entity
@@ -33,7 +34,7 @@ public class Subject {
 	@Column(name="Description")
 	private String description;
 	@Column(name = "YearOfStudy")
-	@Size(min = 1, max = 1, message = "Year of study must have only one number")
+	@Max(1)
 	private int yearOfStudy;
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10)

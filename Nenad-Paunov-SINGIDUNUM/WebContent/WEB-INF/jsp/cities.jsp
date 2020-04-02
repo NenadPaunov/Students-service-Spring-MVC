@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,10 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Students:</h3>
-	<c:forEach var="student" items="${students}">
+<script>
+var city = ${cities};
+
+
+</script>
+<h3>Cities:</h3>
+	<c:forEach var="city" items="${cities}">
 		<p>
-			Tekst: <c:out value="${student}"></c:out>
+			Tekst: <c:out value="${city}"></c:out>
 		</p>
 
 	</c:forEach>

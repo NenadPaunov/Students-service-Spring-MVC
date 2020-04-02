@@ -3,6 +3,7 @@ package nenad.paunov.singidunum.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +26,9 @@ public class Title {
 	@Size(min = 2, max = 30, message = "Title name must be between 2 and 30 characters")
 	@Column(name = "TitleName")
 	private String titleName;
-	@ManyToOne
-	@JoinColumn(name = "Id")
-	private Professor professor;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "TitleId")
+	private List<Professor> professors = new ArrayList<Professor>();
 	
 	public int getTitleId() {
 		return titleId;
@@ -40,6 +41,16 @@ public class Title {
 	}
 	public void setTitleName(String titleName) {
 		this.titleName = titleName;
+	}
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+	public void setProfessors(List<Professor> professors) {
+		this.professors = professors;
+	}
+	@Override
+	public String toString() {
+		return "Title [titleId=" + titleId + ", titleName=" + titleName + ", professors=" + professors + "]";
 	}
 	
 	

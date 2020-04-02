@@ -42,9 +42,9 @@ public abstract class Person {
 	@Size(min = 3, max = 30, message = "Address must be between 3 and 50 characters")
 	@Column(name = "Address")
 	private String address;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Id")
-	private List<City> cities = new ArrayList<City>();
+	@ManyToOne
+	@JoinColumn(name = "CityId")
+	private City city;
 	@Size(min = 3, max = 30, message = "Phone number must be between 6 and 15 characters")
 	private String phone;
 
@@ -88,13 +88,6 @@ public abstract class Person {
 		this.address = address;
 	}
 
-	public List<City> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<City> cities) {
-		this.cities = cities;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -103,5 +96,22 @@ public abstract class Person {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", address=" + address + ", city=" + city + ", phone=" + phone + "]";
+	}
+
+	
+	
 
 }

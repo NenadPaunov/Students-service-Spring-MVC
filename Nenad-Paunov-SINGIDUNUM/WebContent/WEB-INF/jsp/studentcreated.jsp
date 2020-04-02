@@ -6,15 +6,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Student created</title>
 </head>
 <body>
-	<h3>Students:</h3>
-	<c:forEach var="student" items="${students}">
-		<p>
-			Tekst: <c:out value="${student}"></c:out>
-		</p>
-
-	</c:forEach>
+	<h3>Student created:</h3>
+	<p>${student}</p>
 </body>
 </html>
