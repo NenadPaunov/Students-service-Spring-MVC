@@ -50,7 +50,7 @@ public class Title {
 	}
 	@Override
 	public String toString() {
-		return "Title [titleId=" + titleId + ", titleName=" + titleName + ", professors=" + professors + "]";
+		return "Title [titleId=" + titleId + ", titleName=" + titleName;
 	}
 	
 	

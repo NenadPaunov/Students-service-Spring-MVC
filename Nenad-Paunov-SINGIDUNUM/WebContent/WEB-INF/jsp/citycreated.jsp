@@ -6,15 +6,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>All cities</title>
+<title>City created</title>
 </head>
 <body>
-	<h3>Cities:</h3>
-	<c:forEach var="city" items="${cities}">
-		<p>
-			<c:out value="${city}"></c:out>
-		</p>
-
-	</c:forEach>
+	<h3>City created:</h3>
+	<p>${city}</p>
 </body>
 </html>

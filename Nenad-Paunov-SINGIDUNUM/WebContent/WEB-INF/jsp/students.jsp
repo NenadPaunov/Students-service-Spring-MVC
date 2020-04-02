@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Show students</title>
 </head>
 <body>
 	<h3>Students:</h3>

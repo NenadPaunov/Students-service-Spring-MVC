@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
 @Table(name = "Cities")
 public class City {
 	@Id
-	@Max(7)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CityId")
 	private int cityId;

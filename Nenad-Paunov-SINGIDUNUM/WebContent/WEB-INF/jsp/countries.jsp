@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>All cities</title>
+<title>All countries</title>
 </head>
 <body>
-	<h3>Cities:</h3>
-	<c:forEach var="city" items="${cities}">
+	<h3>Countries:</h3>
+	<c:forEach var="country" items="${countries}">
 		<p>
-			<c:out value="${city}"></c:out>
+			<c:out value="${country}"></c:out>
 		</p>
 
 	</c:forEach>
