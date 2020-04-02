@@ -39,21 +39,20 @@ public class StudentsController {
 		return "createstudent";
 	}
 	@RequestMapping(value="/docreatestudent", method=RequestMethod.POST)
-	public String doCreate(@RequestParam String category, Model model,@Valid Student student, BindingResult result, @ModelAttribute("myform") Student myform) { //obrisati requestparam
+	public String doCreate(Model model,@Valid Student student,City city, BindingResult result) {
 		if(result.hasErrors()) {
 			System.out.println("Form is not valid");
 			List<ObjectError> errors = result.getAllErrors();
 			for(ObjectError e: errors) {
 				System.out.println(e.getDefaultMessage());
-			return "teststudent"; //vratiti na createstudent
+			return "createstudent";
 			}
 		}else {
-			System.out.println("Form validated successsfully!");
-			
+			System.out.println("Form validated successsfully!");			
 		}
-		System.out.println(category);
-		System.out.println(student);
-		//System.out.println(student.getCity().getCityId());
+		
+		City newCity = citiesService.getCity(city.getCityId());
+		student.setCity(newCity);
 		studentsServices.saveOrUpdateStudent(student);
 		model.addAttribute("student",student);
 		return "studentcreated";

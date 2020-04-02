@@ -48,4 +48,17 @@ public class Country {
 		this.name = name;
 	}
 
+	public List<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<City> cities) {
+		this.cities = cities;
+	}
+
+	@Override
+	public String toString() {
+		return "Country [countryId=" + countryId + ", name=" + name;
+	}
+
 }

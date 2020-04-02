@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,17 +44,13 @@
 					type="number"></td>
 			</tr>
 			<tr>
-				<form:select path="category">
-					<form:option value="NONE"> --SELECT--</form:option>
-					<form:options items="${cities}"></form:options>
-				</form:select>
-				<!-- 	<td><select name="cityName" size="4">
+					<td><select name="cityId">
 						<c:forEach var="tempCity" items="${cities}">
 
-							<option value="${tempCity.cityName}">${tempCity.cityName}</option>
+							<option value="${tempCity.cityId} ">${tempCity.cityName}</option>
 
 						</c:forEach>
-				</select></td> -->
+				</select></td>
 			</tr>
 			<tr>
 				<td class="label"></td>
