@@ -28,7 +28,7 @@ public class TitlesController {
 	}
 	
 	@RequestMapping("/createtitle")
-	public String createCountry(Model model){	
+	public String createTitle(Model model){	
 		return "createtitle";
 	}
 	@RequestMapping(value="/docreatetitle", method=RequestMethod.POST)

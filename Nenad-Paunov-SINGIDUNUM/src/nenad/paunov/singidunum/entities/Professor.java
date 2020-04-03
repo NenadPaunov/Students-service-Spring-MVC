@@ -16,6 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+
+
+
 @Entity
 @Table(name="Professors")
 public class Professor extends Person {
@@ -31,9 +35,11 @@ public class Professor extends Person {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "Id")
 	private List<Exam> exams = new ArrayList<Exam>();
+	
 	public Date getReelectionDate() {
 		return reelectionDate;
 	}
+	
 	public void setReelectionDate(Date reelectionDate) {
 		this.reelectionDate = reelectionDate;
 	}
@@ -55,9 +61,13 @@ public class Professor extends Person {
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
 	}
+	
+	public Professor() {
+		
+	}
 	@Override
 	public String toString() {
-		return "Professor [reelectionDate=" + reelectionDate + ", titles=" + titles + ", subjects=" + subjects
+		return super.toString()+ "Professor [reelectionDate=" + reelectionDate + ", titles=" + titles + ", subjects=" + subjects
 				+ ", exams=" + exams + "]";
 	}
 	

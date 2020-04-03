@@ -43,6 +43,23 @@ public class Exam {
 	public void setExamDate(Date examDate) {
 		this.examDate = examDate;
 	}
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	@Override
+	public String toString() {
+		return "Exam [examId=" + examId + ", examDate=" + examDate + ", subject=" + subject + ", professor=" + professor
+				+ "]";
+	}
 	
 	
 }

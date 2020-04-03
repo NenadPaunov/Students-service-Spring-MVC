@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show students</title>
+<title>Show professors</title>
 </head>
 <body>
-	<h3>Students:</h3>
-	<c:forEach var="student" items="${students}">
+	<h3>Professors:</h3>
+	<c:forEach var="professor" items="${professors}">
 		<p>
-  			<c:out value="${student}"></c:out>
+		
+			<c:out value="${professor}"></c:out>
 		</p>
 
 	</c:forEach>

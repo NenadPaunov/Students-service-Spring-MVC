@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Create title</title>
+<link href="${pageContext.request.contextPath}/static/css/main.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/docreatetitle"

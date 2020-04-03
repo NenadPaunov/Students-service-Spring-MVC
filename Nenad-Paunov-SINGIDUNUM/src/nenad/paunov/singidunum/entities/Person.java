@@ -105,6 +105,9 @@ public abstract class Person {
 		this.city = city;
 	}
 
+	public Person() {
+		
+	}
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
