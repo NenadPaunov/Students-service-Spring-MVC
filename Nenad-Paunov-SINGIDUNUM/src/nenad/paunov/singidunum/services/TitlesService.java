@@ -12,20 +12,20 @@ import nenad.paunov.singidunum.entities.Title;
 public class TitlesService {
 	@Autowired
 	TitlesDao titlesDao;
-	
+
 	public List<Title> getAllTitles() {
 		return titlesDao.getAllTitles();
 	}
-	
+
 	public Title getTitle(int id) {
 		return titlesDao.getTitle(id);
 	}
-	
+
 	public Title saveOrUpdateTitle(Title title) {
 		return titlesDao.saveOrUpdateTitle(title);
 	}
-	
-	public boolean deleteTitle(int id) {
-		return titlesDao.deleteTitle(id);
+
+	public void deleteTitle(int id) {
+		titlesDao.deleteTitle(id);
 	}
 }

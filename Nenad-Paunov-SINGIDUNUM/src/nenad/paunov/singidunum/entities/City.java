@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,7 +33,7 @@ public class City {
 	@ManyToOne
 	@JoinColumn(name = "CountryId")
 	private Country country;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "CityId")
 	private List<Person> persons = new ArrayList<Person>();
 

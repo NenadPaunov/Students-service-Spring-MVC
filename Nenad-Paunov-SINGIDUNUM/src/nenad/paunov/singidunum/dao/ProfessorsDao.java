@@ -29,13 +29,8 @@ public class ProfessorsDao {
 		return professor;
 	}
 
-	public boolean deleteProfessor(int id) {
-		try {
-			session.getCurrentSession().delete(session.getCurrentSession().get(Professor.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
+	public void deleteProfessor(int id) {
+		session.getCurrentSession().delete(session.getCurrentSession().get(Professor.class, id));
 	}
 
 }

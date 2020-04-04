@@ -1,6 +1,5 @@
 package nenad.paunov.singidunum.controllers;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,11 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Professor;
+import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Subject;
 import nenad.paunov.singidunum.services.ProfessorsService;
 import nenad.paunov.singidunum.services.SubjectsService;
@@ -61,6 +61,14 @@ public class SubjectsController {
 		subject.setProfessor(profs);
 		subjectsService.saveOrUpdateSubject(subject);
 		model.addAttribute("subject", subject);
-		return "subjectcreated";
+		return "subject_created";
+	}
+	
+	@RequestMapping(value ="/dodeletesubject/{id}")
+	public String deleteSubject(@PathVariable int id, Model model) {
+		subjectsService.deleteSubject(id);
+		List<Subject> subjects = subjectsService.getAllSubjects();
+		model.addAttribute("subjects", subjects);
+		return "subjects";
 	}
 }

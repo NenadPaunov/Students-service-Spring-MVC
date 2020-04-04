@@ -29,10 +29,10 @@ public class Professor extends Person {
 	@ManyToOne
 	@JoinColumn(name = "TitleId")
 	private Title titles;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.DETACH)
 	@JoinTable(name = "ProfessorsSubjects", joinColumns = @JoinColumn(name = "Id"), inverseJoinColumns = @JoinColumn(name = "SubjectId"))
 	private Set<Subject> subjects = new HashSet<Subject>();
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "Id")
 	private List<Exam> exams = new ArrayList<Exam>();
 	

@@ -29,12 +29,7 @@ public class SubjectsDao {
 		return subject;
 	}
 
-	public boolean deleteSubject(int id) {
-		try {
+	public void deleteSubject(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Subject.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
 	}
 }

@@ -12,21 +12,21 @@ import nenad.paunov.singidunum.entities.Professor;
 public class ProfessorsService {
 	@Autowired
 	ProfessorsDao professorsDao;
-	
+
 	public List<Professor> getAllProfessors() {
 		return professorsDao.getAllProfessors();
 	}
-	
+
 	public Professor getProfessor(int id) {
 		return professorsDao.getProfessor(id);
 	}
-	
+
 	public Professor saveOrUpdateProfessor(Professor professor) {
 		return professorsDao.saveOrUpdateProfessor(professor);
 	}
-	
-	public boolean deleteProfessor(int id) {
-		return professorsDao.deleteProfessor(id);
+
+	public void deleteProfessor(int id) {
+		professorsDao.deleteProfessor(id);
 	}
 
 }

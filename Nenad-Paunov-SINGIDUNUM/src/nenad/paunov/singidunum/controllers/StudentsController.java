@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.services.CitiesService;
 import nenad.paunov.singidunum.services.StudentsService;
+
 @Controller
 public class StudentsController {
 	@Autowired
@@ -28,33 +31,52 @@ public class StudentsController {
 	@RequestMapping("/students")
 	public String showStudents(Model model) {
 		List<Student> students = studentsServices.getAllStudents();
-		model.addAttribute("students",students);
-		return "students";		
+		model.addAttribute("students", students);
+		return "students";
 	}
-	
-	@RequestMapping("/createstudent")
-	public String createStudent(Model model){	
+
+	@RequestMapping("/create_student")
+	public String createStudent(Model model) {
 		List<City> cities = citiesService.getAllCities();
-		model.addAttribute("cities",cities);
-		return "createstudent";
+		model.addAttribute("cities", cities);
+		return "create_student";
 	}
-	@RequestMapping(value="/docreatestudent", method=RequestMethod.POST)
-	public String doCreate(Model model,@Valid Student student,City city, BindingResult result) {
-		if(result.hasErrors()) {
+
+	@RequestMapping(value = "/docreatestudent", method = RequestMethod.POST)
+	public String doCreate(Model model, @Valid Student student, City city, BindingResult result) {
+		if (result.hasErrors()) {
 			System.out.println("Form is not valid");
 			List<ObjectError> errors = result.getAllErrors();
-			for(ObjectError e: errors) {
+			for (ObjectError e : errors) {
 				System.out.println(e.getDefaultMessage());
-			return "createstudent";
+				return "create_student";
 			}
-		}else {
-			System.out.println("Form validated successsfully!");			
+		} else {
+			System.out.println("Form validated successsfully!");
 		}
-		
+		if(city.getCityId()!=0) {
 		City newCity = citiesService.getCity(city.getCityId());
-		student.setCity(newCity);
+		student.setCity(newCity);}
 		studentsServices.saveOrUpdateStudent(student);
-		model.addAttribute("student",student);
-		return "studentcreated";
+		model.addAttribute("student", student);
+		return "student_created";
 	}
+
+
+	@RequestMapping(value ="/dodeletestudent/{id}")
+	public String deleteStudent(@PathVariable int id, Model model) {
+		studentsServices.deleteStudent(id);
+		List<Student> students = studentsServices.getAllStudents();
+		model.addAttribute("students", students);
+		return "students";
+	}
+	
+
+	@RequestMapping("/test")
+	public String createStudent2(Model model) {
+		List<City> cities = citiesService.getAllCities();
+		model.addAttribute("cities", cities);
+		return "test";
+	}
+	
 }

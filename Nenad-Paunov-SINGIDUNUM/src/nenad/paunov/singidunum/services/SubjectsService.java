@@ -25,7 +25,7 @@ public class SubjectsService {
 		return subjectsDao.saveOrUpdateSubject(subject);
 	}
 	
-	public boolean deleteSubject(int id) {
-		return subjectsDao.deleteSubject(id);
+	public void deleteSubject(int id) {
+		 subjectsDao.deleteSubject(id);
 	}
 }

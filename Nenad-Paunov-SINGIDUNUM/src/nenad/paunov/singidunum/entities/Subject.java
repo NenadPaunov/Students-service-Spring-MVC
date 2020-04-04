@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 @Entity
 @Table(name="Subjects")
 public class Subject {
@@ -34,7 +36,7 @@ public class Subject {
 	@Column(name="Description")
 	private String description;
 	@Column(name = "YearOfStudy")
-	@Max(1)
+	@Range(min = 1, max = 4, message = "Please select only numbers from 1 to 4")
 	private int yearOfStudy;
 	@Size(max=10)
 	private String semester;
@@ -44,7 +46,7 @@ public class Subject {
 	@ManyToMany
 	@JoinColumn(name = "Id")
 	private Set<Professor> professor;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "SubjectId")
 	private List<Exam> exams = new ArrayList<Exam>();
 	

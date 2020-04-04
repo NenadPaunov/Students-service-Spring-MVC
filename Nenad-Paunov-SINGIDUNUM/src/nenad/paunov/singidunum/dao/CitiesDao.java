@@ -29,12 +29,7 @@ public class CitiesDao {
 		return city;
 	}
 
-	public boolean deleteCity(int id) {
-		try {
+	public void deleteCity(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(City.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
 	}
 }

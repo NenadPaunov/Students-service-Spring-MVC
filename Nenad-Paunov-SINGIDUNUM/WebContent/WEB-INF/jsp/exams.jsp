@@ -7,6 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>All exams</title>
+<link href="${pageContext.request.contextPath}/static/css/main.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 <h3>Exams:</h3>

@@ -25,8 +25,8 @@ public class StudentsService {
 		return studentsDao.saveOrUpdateStudent(student);
 	}
 	
-	public boolean deleteStudent(int id) {
-		return studentsDao.deleteStudent(id);
+	public void deleteStudent(int id) {
+		 studentsDao.deleteStudent(id);
 	}
 	
 	

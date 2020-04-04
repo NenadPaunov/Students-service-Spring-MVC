@@ -29,12 +29,7 @@ public class ExamsDao {
 		return exam;
 	}
 
-	public boolean deleteExam(int id) {
-		try {
+	public void deleteExam(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Exam.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
 	}
 }

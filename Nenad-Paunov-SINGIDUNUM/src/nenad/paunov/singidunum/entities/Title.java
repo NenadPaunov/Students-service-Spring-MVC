@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,7 +25,7 @@ public class Title {
 	@Size(min = 2, max = 30, message = "Title name must be between 2 and 30 characters")
 	@Column(name = "TitleName")
 	private String titleName;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "TitleId")
 	private List<Professor> professors = new ArrayList<Professor>();
 	

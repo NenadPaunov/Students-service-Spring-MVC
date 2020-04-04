@@ -29,12 +29,7 @@ public class CountriesDao {
 		return country;
 	}
 
-	public boolean deleteCountry(int id) {
-		try {
+	public void deleteCountry(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Country.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
 	}
 }

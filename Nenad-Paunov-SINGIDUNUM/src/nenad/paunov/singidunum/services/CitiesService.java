@@ -27,8 +27,8 @@ public class CitiesService {
 		return citiesDao.saveOrUpdateCity(city);
 	}
 
-	public boolean deleteCity(int id) {
-		return citiesDao.deleteCity(id);
+	public void deleteCity(int id) {
+		 citiesDao.deleteCity(id);
 	}
 
 }

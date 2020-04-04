@@ -29,13 +29,9 @@ public class StudentsDao {
 		return student;
 	}
 
-	public boolean deleteStudent(int id) {
-		try {
+	public void deleteStudent(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Student.class, id));
-		} catch (Exception ex) {
-			return false;
-		}
-		return true;
+		
 	}
 
 }

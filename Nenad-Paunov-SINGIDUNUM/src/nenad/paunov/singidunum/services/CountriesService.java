@@ -24,7 +24,7 @@ public class CountriesService {
 		return countriesDao.saveOrUpdateCountry(country);
 	}
 	
-	public boolean deleteCountry(int id) {
-		return countriesDao.deleteCountry(id);
+	public void deleteCountry(int id) {
+		 countriesDao.deleteCountry(id);
 	}
 }

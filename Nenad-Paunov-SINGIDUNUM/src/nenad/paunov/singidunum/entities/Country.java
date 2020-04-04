@@ -7,10 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,7 +25,7 @@ public class Country {
 	@Size(min = 2, max = 30, message = "Country name must be between 2 and 30 characters")
 	@Column(name = "Name")
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "CountryId")
 	private List<City> cities = new ArrayList<City>();
 	

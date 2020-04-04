@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.TitlesService;
 
@@ -46,6 +48,14 @@ public class TitlesController {
 		
 		titlesService.saveOrUpdateTitle(title);
 		model.addAttribute("title",title);
-		return "titlecreated";
+		return "title_created";
+	}
+	
+	@RequestMapping(value ="/dodeletetitle/{id}")
+	public String deleteTitle(@PathVariable int id, Model model) {
+		titlesService.deleteTitle(id);
+		List<Title> titles = titlesService.getAllTitles();
+		model.addAttribute("titles", titles);
+		return "titles";
 	}
 }

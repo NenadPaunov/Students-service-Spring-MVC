@@ -15,16 +15,12 @@
 	margin-left: 10px;
 }
 
-#home {
-	background-color:lightblue;
-}
 body{
 	background:#CCCCCC;
-	background: url("../static/images/nordic.jpg");
+	background: url(../images/brickwall.png);
 	font-family:"Open Sans",sans-serif;
 	background-attachment:fixed;
 	background-repeat:repeat;
-	text-shadow:5px 5px 50px #23F3B5;
 }
 #wrapper{
 	background:rgba(255, 255, 255, 0.7);
@@ -40,31 +36,20 @@ body{
 }
 #nav{
 	background:#333333;
-	overflow:hidden;
-	clear:both;
 }
 #main{
-	float:left;
-	
+	float:none;	
 	width: 700px;
-	margin:10px 0 10px 0;
-}
-#sidebar{
-	float:right;
-	width:240px;
-	
-	margin:10px 0 10px 0;
+	margin:50px 0 50px 50px;
 }
 #footer{
 	background: #333333;
 	clear:both;
 }
-#slika{
-	float:left;
-}
-#slikaText{
+#titlePage{
 	float:right;
 	color:white;
+	padding-right: 20px;
 }
 #nav ul{
 	list-style:none;
@@ -98,26 +83,155 @@ body{
 	color:white;
 	margin:0;
 }
-.vero{
-	background:#BBBBBB;
-	color:white;
-	padding:10px;
-}
 #nav ul li{
  margin:10px;
 }
-#social{
-	font-size:22px;
-	float:right;
-	padding: 10px;
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #C51417;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
-#social a:link,
-#social a:visited {
-	color:#FFFFFF;
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
-#social a:hover {
-	color:#C51417;
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #C51417;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
-#social a:active {
-	color:#CCCCCC;
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #333333;
+}
+/* Table */
+.table-wrapper {
+	float: left;
+	width: 60%;
+	margin: 20px auto;
+	margin-left: 50px;
+	background: #fff;
+	padding: 20px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.table-title {
+	padding-bottom: 10px;
+	margin: 0 0 10px;
+}
+
+.table-title h2 {
+	margin: 6px 0 0;
+	font-size: 22px;
+}
+
+.table-title .add-new {
+	float: right;
+	height: 30px;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	line-height: 13px;
+}
+
+.table-title .add-new i {
+	margin-right: 4px;
+}
+
+table.table {
+	table-layout: auto;
+}
+
+table.table tr th, table.table tr td {
+	border-color: #e9e9e9;
+}
+
+table td {
+	padding: 2%
+}
+
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+table.table th:last-child {
+	width: 100px;
+}
+
+table.table td a {
+	cursor: pointer;
+	display: inline-block;
+	margin: 0 5px;
+	min-width: 24px;
+}
+
+table.table td a.add {
+	color: #27C46B;
+}
+
+table.table td a.edit {
+	color: #FFC107;
+}
+
+table.table td a.delete {
+	color: #E34724;
+}
+
+table.table td i {
+	font-size: 19px;
+}
+
+table.table td a.add i {
+	font-size: 24px;
+	margin-right: -1px;
+	position: relative;
+	top: 3px;
+}
+
+table.table .form-control {
+	height: 32px;
+	line-height: 32px;
+	box-shadow: none;
+	border-radius: 2px;
+}
+
+table.table .form-control.error {
+	border-color: #f50000;
+}
+
+table.table td .add {
+	display: none;
+}
+/* End table tag */

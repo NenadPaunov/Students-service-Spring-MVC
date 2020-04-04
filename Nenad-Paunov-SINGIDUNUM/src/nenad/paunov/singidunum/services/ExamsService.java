@@ -12,20 +12,20 @@ import nenad.paunov.singidunum.entities.Exam;
 public class ExamsService {
 	@Autowired
 	ExamsDao examsDao;
-	
+
 	public List<Exam> getAllExams() {
 		return examsDao.getAllExams();
 	}
-	
+
 	public Exam getExam(int id) {
 		return examsDao.getExam(id);
 	}
-	
+
 	public Exam saveOrUpdateExam(Exam exam) {
 		return examsDao.saveOrUpdateExam(exam);
 	}
-	
-	public boolean deleteExam(int id) {
-		return examsDao.deleteExam(id);
+
+	public void deleteExam(int id) {
+		examsDao.deleteExam(id);
 	}
 }
