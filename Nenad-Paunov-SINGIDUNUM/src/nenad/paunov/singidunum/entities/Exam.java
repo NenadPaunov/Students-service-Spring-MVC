@@ -1,12 +1,9 @@
 package nenad.paunov.singidunum.entities;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 @Entity
 @Table(name="Exams")
 public class Exam {
@@ -25,17 +23,21 @@ public class Exam {
 	@GeneratedValue
 	@Column(name = "ExamId")
 	private int examId;
-	@NotNull(message = "Exam`s date cannot be null")
-	@Column(name = "Name")
+	@NotNull
+	@Column(name="ExamName")
+	private String examName;
+	@NotNull
+	@Range(min = 1, max = 7, message = "Please select only numbers from 1 to 9")
+	@Column(name="ESPB")
+	private int espb;
+	@NotNull
+	@Column(name = "examDate")
 	private Date examDate;
 	@ManyToOne
-	@JoinColumn(name = "SubjectId")
 	private Subject subject;
 	@ManyToOne
-	@JoinColumn(name = "Id")
 	private Professor professor;
-	@ManyToMany
-	@JoinColumn(name = "Id")
+	@OneToMany(mappedBy="exams")
 	private Set<Student> students = new HashSet<Student>();
 	public int getExamId() {
 		return examId;
@@ -61,11 +63,30 @@ public class Exam {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	public String getExamName() {
+		return examName;
+	}
+	public void setExamName(String examName) {
+		this.examName = examName;
+	}
+	public int getEspb() {
+		return espb;
+	}
+	public void setEspb(int espb) {
+		this.espb = espb;
+	}
+	public Set<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 	@Override
 	public String toString() {
-		return "Exam [examId=" + examId + ", examDate=" + examDate + ", subject=" + subject + ", professor=" + professor
-				+ "]";
+		return "examName=" + examName + ", espb=" + espb + ", examDate=" + examDate;
 	}
+	
+	
 	
 	
 }

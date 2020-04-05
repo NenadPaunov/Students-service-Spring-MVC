@@ -38,13 +38,13 @@ public class ProfessorsController {
 		return "professors";		
 	}
 	
-	@RequestMapping("/createprofessor")
+	@RequestMapping("/create_professor")
 	public String createProfessor(Model model){	
 		List<City> cities = citiesService.getAllCities();
 		model.addAttribute("cities",cities);
 		List<Title> titles = titlesService.getAllTitles();
 		model.addAttribute("titles",titles);
-		return "createprofessor";
+		return "create_professor";
 	}
 	@RequestMapping(value="/docreateprofessor", method=RequestMethod.POST)
 	public String doCreate(Model model,@Valid Professor professor,City city, Title title, BindingResult result) {
@@ -53,7 +53,7 @@ public class ProfessorsController {
 			List<ObjectError> errors = result.getAllErrors();
 			for(ObjectError e: errors) {
 				System.out.println(e.getDefaultMessage());
-			return "createprofessor";
+			return "create_professor";
 			}
 		}else {
 			System.out.println("Form validated successsfully!");			
@@ -63,7 +63,43 @@ public class ProfessorsController {
 		professor.setCity(newCity);
 		
 		Title newTitle = titlesService.getTitle(title.getTitleId());
-		professor.setTitles(newTitle);
+		professor.setTitle(newTitle);
+		
+		professorsServices.saveOrUpdateProfessor(professor);
+		model.addAttribute("professor",professor);
+		return "professor_created";
+	}
+	
+	@RequestMapping(value ="/doupdateprofessor/{id}")
+	public String updateProfessor(@PathVariable int id, Model model) {
+		Professor professor = professorsServices.getProfessor(id);
+		List<City> cities = citiesService.getAllCities();
+		model.addAttribute("cities",cities);
+		List<Title> titles = titlesService.getAllTitles();
+		model.addAttribute("titles",titles);
+		model.addAttribute("professor", professor);
+		model.addAttribute("id", id);
+		return "update_professor";
+	}
+	
+	@RequestMapping(value = "/updateprofessor/{id}", method = RequestMethod.POST)
+	public String doUpdate(Model model,@Valid Professor professor,City city, Title title, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("Form is not valid");
+			List<ObjectError> errors = result.getAllErrors();
+			for(ObjectError e: errors) {
+				System.out.println(e.getDefaultMessage());
+			return "update_professor";
+			}
+		}else {
+			System.out.println("Form validated successsfully!");			
+		}
+		
+		City newCity = citiesService.getCity(city.getCityId());
+		professor.setCity(newCity);
+		
+		Title newTitle = titlesService.getTitle(title.getTitleId());
+		professor.setTitle(newTitle);
 		
 		professorsServices.saveOrUpdateProfessor(professor);
 		model.addAttribute("professor",professor);

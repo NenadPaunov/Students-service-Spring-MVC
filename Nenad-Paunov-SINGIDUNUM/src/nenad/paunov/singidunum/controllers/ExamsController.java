@@ -1,6 +1,7 @@
 package nenad.paunov.singidunum.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -36,34 +37,41 @@ public class ExamsController {
 		return "exams";
 	}
 
-	@RequestMapping("/createexam")
+	@RequestMapping("/create_exam")
 	public String createExam(Model model) {
 		List<Subject> subjects = subjectService.getAllSubjects();
 		model.addAttribute("subjects", subjects);
-		List<Professor> professors = professorsServices.getAllProfessors();
-		model.addAttribute("professors", professors);
+		return "create_exam";
+	}
 
-		return "createexam";
+	@RequestMapping(value = "/create_exam2", method = RequestMethod.POST)
+	public String createExam2(Model model, Exam exam, Subject subject) {
+		Subject subjectName = subjectService.getSubject(subject.getSubjectId());
+		if (examsService.getExamsByDate(exam.getExamDate(), subjectName.getName()).size() > 0) {
+			String message = "Exam for this subject is still active";
+			model.addAttribute("message", message);
+			List<Subject> subjects = subjectService.getAllSubjects();
+			model.addAttribute("subjects", subjects);
+			return "create_exam";
+		}
+		Set<Professor> professors = subjectService.getProfessorsBySubject(subject.getSubjectId());
+		model.addAttribute("professors", professors);
+		Subject subjectDatabase = subjectService.getSubject(subject.getSubjectId());
+		model.addAttribute("subjectDatabase", subjectDatabase);
+		model.addAttribute("exam", exam);
+		return "create_exam2";
 	}
 
 	@RequestMapping(value = "/docreateexam", method = RequestMethod.POST)
-	public String doCreate(Model model, @Valid Exam exam, Professor professor, Subject subject, BindingResult result) {
-		if (result.hasErrors()) {
-			System.out.println("Form is not valid");
-			List<ObjectError> errors = result.getAllErrors();
-			for (ObjectError e : errors) {
-				System.out.println(e.getDefaultMessage());
-				return "createexam";
-			}
-		} else {
-			System.out.println("Form validated successsfully!");
-		}
+	public String doCreateTest(Model model, Exam exam, Professor professor, Subject subject) {
+
 		Professor newProfessor = professorsServices.getProfessor(professor.getId());
 		exam.setProfessor(newProfessor);
 
-		Subject newSubject = subjectService.getSubject(subject.getSubjectId());
-		exam.setSubject(newSubject);
+		Subject subjectDatabase = subjectService.getSubject(subject.getSubjectId());
+		exam.setSubject(subjectDatabase);
 
+		exam.setExamName(subjectDatabase.getName());
 		examsService.saveOrUpdateExam(exam);
 		model.addAttribute("exam", exam);
 		return "examcreated";

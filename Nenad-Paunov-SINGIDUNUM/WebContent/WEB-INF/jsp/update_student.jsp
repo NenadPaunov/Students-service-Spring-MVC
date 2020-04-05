@@ -6,12 +6,13 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/static/css/create.css"
+	type="text/css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Subject created</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<title>Update student</title>
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -26,6 +27,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/student.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>
+<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -111,38 +118,75 @@
 
 		</div>
 		<div id="main">
-			<div class="container">
-				<div class="table-wrapper">
-					<div class="table-title">
-						<div class="row">
-							<div class="col-sm-8">
-								<h2>
-									<b>Subject has been successfully created/updated</b>
-								</h2>
-							</div>
 
-						</div>
-					</div>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Year of study</th>
-								<th>Semester</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>${subject.name}</td>
-								<td>${subject.description}</td>
-								<td>${subject.yearOfStudy}</td>
-								<td>${subject.semester}</td>
-							</tr>
-						</tbody>
-					</table>
+			<div id="wrap">
+				<!--wrap start-->
+				<div id="wrap2">
+					<!--wrap2 start-->
+
+					<h2 class="free_account">Update student</h2>
+
+					<form action="${pageContext.request.contextPath }/updatestudent/${student.id}"
+						method="post" id="register_form">
+
+						<p class="validate_msg">Please fix the errors below!</p>
+
+						<p>
+							<label for="indexNumber">Index number</label> <input
+								name="indexNumber" type="text"
+								placeholder="Index number(Required)" value="${student.indexNumber}" maxlength = "10"/> <span
+								class="val_indexNumber" ></span>
+						</p>
+						<p>
+							<label for="fname">First name</label> <input name="firstName"
+								type="text" placeholder="First name(Required)" value="${student.firstName}" minlength="3" maxlength = "30"/> <span
+								class="val_fname"></span>
+						</p>
+						<p>
+							<label for="lname">Last Name</label> <input name="lastName"
+								type="text" placeholder="Last name(Required)" value="${student.lastName}" minlength="3" maxlength = "30"/> <span
+								class="val_lname"></span>
+						</p>
+						<p>
+							<label for="email">Email</label> <input name="email" type="text"
+								placeholder="name@gmail.com(Required)" value="${student.email}" maxlength = "30"/> <span
+								class="val_email"></span>
+						</p>
+						<p>
+							<label for="address">Address</label> <input name="address"
+								type="text" placeholder="Address(Required)" value="${student.address}" minlength="3" maxlength = "50"/> <span
+								class="val_address"></span>
+						</p>
+						<p>
+							<label for="phone">Phone number</label> <input name="phone"
+								type="text" placeholder="(XXX)XXX-XXXX(Required)" value="${student.phone}" minlength="6" maxlength = "15"/> <span
+								class="val_phone"></span>
+						</p>
+						<p>
+							<label for="year">Current year of study</label> <input
+								name=currentYearOfStudy type="number"
+								placeholder="Current year of study(Required)" value="${student.currentYearOfStudy}" min="1" max="7"/> <span
+								class="val_year"></span>
+						</p>
+						<p>
+							<select name="cityId" >
+								<c:forEach var="tempCity" items="${cities}">
+
+									<option value="${tempCity.cityId} ">${tempCity.cityName}</option>
+
+								</c:forEach>
+							</select>
+						</p>
+
+
+
+						<input type="submit" name="submit" value="Update student">
+					</form>
+
 				</div>
+				<!--wrap2 end-->
 			</div>
+			<!--wrap1 end-->
 
 		</div>
 		<footer id="footer">
@@ -151,4 +195,5 @@
 
 	</section>
 </body>
+
 </html>

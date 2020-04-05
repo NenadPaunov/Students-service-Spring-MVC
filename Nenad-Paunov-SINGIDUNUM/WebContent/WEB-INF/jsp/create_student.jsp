@@ -12,8 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create student</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -135,38 +134,38 @@
 						<p>
 							<label for="indexNumber">Index number</label> <input
 								name="indexNumber" type="text"
-								placeholder="Index number(Required)" /> <span
+								placeholder="Index number(Required)" maxlength = "10"/> <span
 								class="val_indexNumber"></span>
 						</p>
 						<p>
 							<label for="fname">First name</label> <input name="firstName"
-								type="text" placeholder="First name(Required)" /> <span
+								type="text" placeholder="First name(Required)" minlength="3" maxlength = "30"/> <span
 								class="val_fname"></span>
 						</p>
 						<p>
 							<label for="lname">Last Name</label> <input name="lastName"
-								type="text" placeholder="Last name(Required)" /> <span
+								type="text" placeholder="Last name(Required)" minlength="3" maxlength = "30"/> <span
 								class="val_lname"></span>
 						</p>
 						<p>
 							<label for="email">Email</label> <input name="email" type="text"
-								placeholder="name@gmail.com(Required)" /> <span
+								placeholder="name@gmail.com(Required)" maxlength = "30"/> <span
 								class="val_email"></span>
 						</p>
 						<p>
 							<label for="address">Address</label> <input name="address"
-								type="text" placeholder="Address(Required)" /> <span
+								type="text" placeholder="Address(Required)" minlength="3" maxlength = "50"/> <span
 								class="val_address"></span>
 						</p>
 						<p>
 							<label for="phone">Phone number</label> <input name="phone"
-								type="text" placeholder="(XXX)XXX-XXXX(Required)" /> <span
+								type="text" placeholder="(XXX)XXX-XXXX(Required)" minlength="6" maxlength = "15"/> <span
 								class="val_phone"></span>
 						</p>
 						<p>
 							<label for="year">Current year of study</label> <input
-								name=currentYearOfStudy type="text"
-								placeholder="Current year of study(Required)" /> <span
+								name=currentYearOfStudy type="number"
+								placeholder="Current year of study(Required)"  min="1" max="7"/> <span
 								class="val_year"></span>
 						</p>
 						<p>

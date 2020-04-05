@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.TitlesService;
 
@@ -29,9 +28,9 @@ public class TitlesController {
 		return "titles";		
 	}
 	
-	@RequestMapping("/createtitle")
+	@RequestMapping("/create_title")
 	public String createTitle(Model model){	
-		return "createtitle";
+		return "create_title";
 	}
 	@RequestMapping(value="/docreatetitle", method=RequestMethod.POST)
 	public String doCreate(Model model,@Valid Title title, BindingResult result) {
@@ -40,7 +39,33 @@ public class TitlesController {
 			List<ObjectError> errors = result.getAllErrors();
 			for(ObjectError e: errors) {
 				System.out.println(e.getDefaultMessage());
-			return "createtitle";
+			return "create_title";
+			}
+		}else {
+			System.out.println("Form validated successsfully!");			
+		}
+		
+		titlesService.saveOrUpdateTitle(title);
+		model.addAttribute("title",title);
+		return "title_created";
+	}
+	
+	@RequestMapping(value ="/doupdatetitle/{titleId}")
+	public String updateTitle(@PathVariable int titleId, Model model) {
+		Title title = titlesService.getTitle(titleId);
+		model.addAttribute("title", title);
+		model.addAttribute("id", titleId);
+		return "update_title";
+	}
+	
+	@RequestMapping(value = "/updatetitle/{titleId}", method = RequestMethod.POST)
+	public String doUpdate(@PathVariable int titleId, Model model,@Valid Title title, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("Form is not valid");
+			List<ObjectError> errors = result.getAllErrors();
+			for(ObjectError e: errors) {
+				System.out.println(e.getDefaultMessage());
+			return "update_title";
 			}
 		}else {
 			System.out.println("Form validated successsfully!");			

@@ -12,8 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create city</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -135,13 +134,13 @@
 						<p>
 							<label for="cityName">City name</label> <input
 								name="cityName" type="text"
-								placeholder="City name(Required)" /> <span
+								placeholder="City name(Required)" minlength="2" maxlength = "30"/> <span
 								class="val_cityName"></span>
 						</p>
 						<p>
 							<label for="zipCode">ZIP code</label> <input
 								name="zipCode" type="text"
-								placeholder="ZIP code(Required)" /> <span
+								placeholder="ZIP code(Required)" minlength="2" maxlength = "10"/> <span
 								class="val_zipCode"></span>
 						</p>
 						<p>

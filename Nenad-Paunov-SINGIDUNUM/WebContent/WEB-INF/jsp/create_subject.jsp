@@ -6,12 +6,13 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/static/css/create.css"
+	type="text/css" rel="stylesheet">
+<meta charset="UTF-16">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Subject created</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<title>Create subject</title>
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -26,6 +27,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>
+<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -77,7 +84,8 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
 				</div>
 			</div>
@@ -111,38 +119,63 @@
 
 		</div>
 		<div id="main">
-			<div class="container">
-				<div class="table-wrapper">
-					<div class="table-title">
-						<div class="row">
-							<div class="col-sm-8">
-								<h2>
-									<b>Subject has been successfully created/updated</b>
-								</h2>
-							</div>
 
-						</div>
-					</div>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Year of study</th>
-								<th>Semester</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>${subject.name}</td>
-								<td>${subject.description}</td>
-								<td>${subject.yearOfStudy}</td>
-								<td>${subject.semester}</td>
-							</tr>
-						</tbody>
-					</table>
+			<div id="wrap">
+				<!--wrap start-->
+				<div id="wrap2">
+					<!--wrap2 start-->
+
+					<h2 class="free_account">Create subject</h2>
+
+					<form
+						action="${pageContext.request.contextPath }/docreatesubject"
+						method="post" id="register_form">
+
+						<p class="validate_msg">Please fix the errors below!</p>
+
+						<p>
+							<label for="name">Subject name:</label> <input name="name"
+								type="text" placeholder="Subject name:(Required)" minlength="3" maxlength = "50"/> <span
+								class="val_name"></span>
+						</p>
+						<p>
+							<label for="description">Description</label> <input
+								name="description" type="text"
+								placeholder="Description(Required)" minlength="3" maxlength = "200"/> <span
+								class="val_description"></span>
+						</p>
+						<p>
+							<label for="yearOfStudy">Year of study:</label> <input
+								name="yearOfStudy" type="number" min="1" max="4"
+								placeholder="Year of study(Required)" /> <span
+								class="val_yearOfStudy"></span>
+						</p>
+						<p>
+							<select name="semester" >
+								<option value="WINTER">WINTER</option>
+								<option value="SUMMER">SUMMER</option>
+
+							</select>
+						</p>
+						<p></p>
+						<p>
+							<select name="id">
+								<c:forEach var="tempProfessor" items="${professors}">
+
+									<option value="${tempProfessor.id} ">${tempProfessor.firstName}
+										${tempProfessor.lastName}</option>
+
+								</c:forEach>
+							</select>
+						</p>
+
+						<input type="submit" name="submit" value="Create new subject">
+					</form>
+
 				</div>
+				<!--wrap2 end-->
 			</div>
+			<!--wrap1 end-->
 
 		</div>
 		<footer id="footer">

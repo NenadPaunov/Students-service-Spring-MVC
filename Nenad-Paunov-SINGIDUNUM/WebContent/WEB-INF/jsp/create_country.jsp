@@ -133,7 +133,7 @@
 						<p>
 							<label for="country">Country name</label> <input
 								name="name" type="text"
-								placeholder="Country name(Required)" /> <span
+								placeholder="Country name(Required)" minlength="2" maxlength = "30"/> <span
 								class="val_country"></span>
 						</p>
 						

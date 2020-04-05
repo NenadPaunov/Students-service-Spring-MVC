@@ -54,15 +54,43 @@ public class StudentsController {
 		} else {
 			System.out.println("Form validated successsfully!");
 		}
-		if(city.getCityId()!=0) {
 		City newCity = citiesService.getCity(city.getCityId());
-		student.setCity(newCity);}
+		student.setCity(newCity);
 		studentsServices.saveOrUpdateStudent(student);
 		model.addAttribute("student", student);
 		return "student_created";
 	}
 
 
+	@RequestMapping(value ="/doupdatestudent/{id}")
+	public String updateStudent(@PathVariable int id, Model model) {
+		Student student = studentsServices.getStudent(id);
+		List<City> cities = citiesService.getAllCities();
+		model.addAttribute("cities", cities);
+		model.addAttribute("student", student);
+		model.addAttribute("id", id);
+		return "update_student";
+	}
+	
+	@RequestMapping(value = "/updatestudent/{id}", method = RequestMethod.POST)
+	public String doUpdate(@PathVariable int id, Model model, @Valid Student student, City city, BindingResult result) {
+		if (result.hasErrors()) {
+			System.out.println("Form is not valid");
+			List<ObjectError> errors = result.getAllErrors();
+			for (ObjectError e : errors) {
+				System.out.println(e.getDefaultMessage());
+				return "update_student";
+			}
+		} else {
+			System.out.println("Form validated successsfully!");
+		}
+		City newCity = citiesService.getCity(city.getCityId());
+		student.setCity(newCity);
+		studentsServices.saveOrUpdateStudent(student);
+		model.addAttribute("student", student);
+		return "student_created";
+	}
+	
 	@RequestMapping(value ="/dodeletestudent/{id}")
 	public String deleteStudent(@PathVariable int id, Model model) {
 		studentsServices.deleteStudent(id);
@@ -71,12 +99,5 @@ public class StudentsController {
 		return "students";
 	}
 	
-
-	@RequestMapping("/test")
-	public String createStudent2(Model model) {
-		List<City> cities = citiesService.getAllCities();
-		model.addAttribute("cities", cities);
-		return "test";
-	}
 	
 }

@@ -10,8 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Professors</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -85,7 +84,8 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
 				</div>
 			</div>
@@ -129,7 +129,7 @@
 								</h2>
 							</div>
 							<div class="col-sm-4">
-								<a href="${pageContext.request.contextPath }/createprofessor"
+								<a href="${pageContext.request.contextPath }/create_professor"
 									target="_self"><button type="button"
 										class="btn btn-info add-new">
 										<i class="fa fa-plus"></i> Add New
@@ -153,7 +153,7 @@
 							<tr>
 								<c:forEach var="tempProfessor" items="${professors}">
 									<tr>
-										<td>${tempProfessor.titles.titleName}</td>
+										<td>${tempProfessor.title.titleName}</td>
 										<td>${tempProfessor.firstName}</td>
 										<td>${tempProfessor.lastName}</td>
 										<td>${tempProfessor.email}</td>
@@ -162,7 +162,9 @@
 											target="_self" class="fullscreen" title="See all details"
 											data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
 										</td>
-										<td><a class="edit" title="Edit" data-toggle="tooltip"><i
+										<td><a
+											href="${pageContext.request.contextPath}/doupdateprofessor/${tempProfessor.id}" class="
+											edit" title="Edit" data-toggle="tooltip"><i
 												class="material-icons">&#xE254;</i></a></td>
 										<td><a class="
 									delete" title="Delete"

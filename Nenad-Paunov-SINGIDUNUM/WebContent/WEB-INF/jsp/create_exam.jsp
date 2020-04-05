@@ -6,12 +6,13 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/static/css/create.css"
+	type="text/css" rel="stylesheet">
+<meta charset="UTF-16">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Subject created</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<title>Create exam</title>
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -26,6 +27,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>
+<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -77,7 +84,8 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
 				</div>
 			</div>
@@ -111,38 +119,46 @@
 
 		</div>
 		<div id="main">
-			<div class="container">
-				<div class="table-wrapper">
-					<div class="table-title">
-						<div class="row">
-							<div class="col-sm-8">
-								<h2>
-									<b>Subject has been successfully created/updated</b>
-								</h2>
-							</div>
 
-						</div>
-					</div>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Year of study</th>
-								<th>Semester</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>${subject.name}</td>
-								<td>${subject.description}</td>
-								<td>${subject.yearOfStudy}</td>
-								<td>${subject.semester}</td>
-							</tr>
-						</tbody>
-					</table>
+			<div id="wrap">
+				<!--wrap start-->
+				<div id="wrap2">
+					<!--wrap2 start-->
+
+					<h2 class="free_account">Create exam</h2>
+
+					<form action="${pageContext.request.contextPath }/create_exam2"
+						method="post" id="register_form">
+
+						<p class="validate_msg">Please fix the errors below!</p>
+
+						<p id="wrong_date_exam" >${message}</p>
+						<p>
+
+							<select name="subjectId">
+								<c:forEach var="tempSubject" items="${subjects}">
+
+									<option value="${tempSubject.subjectId} ">${tempSubject.name}</option>
+
+								</c:forEach>
+							</select>
+						</p>
+
+
+						<p>
+							<label id="examDate" for="examDate">Exam date</label> <input
+								name=examDate type="date" min="2020-04-01" max="2030-04-20"
+								required /> <span class="val_examDate"></span>
+						</p>
+
+
+						<input type="submit" name="submit" value="Create exam">
+					</form>
+
 				</div>
+				<!--wrap2 end-->
 			</div>
+			<!--wrap1 end-->
 
 		</div>
 		<footer id="footer">

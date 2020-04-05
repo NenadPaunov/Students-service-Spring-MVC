@@ -27,14 +27,13 @@ public class City {
 	@Size(min = 2, max = 30, message = "City name must be between 2 and 30 characters")
 	@Column(name = "Name")
 	private String cityName;
+	@NotNull(message = "Zip code cannot be null")
 	@Size(min = 2, max = 10, message = "Zip code lenght must be between 2 and 10 characters")
 	@Column(name = "ZipCode")
 	private String zipCode;
 	@ManyToOne
-	@JoinColumn(name = "CountryId")
 	private Country country;
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "CityId")
+	@OneToMany(mappedBy="city")
 	private List<Person> persons = new ArrayList<Person>();
 
 	public int getCityId() {

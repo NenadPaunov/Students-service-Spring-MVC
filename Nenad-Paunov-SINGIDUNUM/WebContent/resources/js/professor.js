@@ -7,9 +7,6 @@ jQuery(function($) {
 
 							var validation_holder = 0;
 
-							var indexNumber = $(
-									"form#register_form input[name='indexNumber']")
-									.val();
 							var fname = $(
 									"form#register_form input[name='firstName']")
 									.val();
@@ -27,19 +24,8 @@ jQuery(function($) {
 									"form#register_form input[name='phone']")
 									.val();
 							var phone_regex = /^[0-9]{6,20}$/; // reg ex phone check	
-							var year = $(
-									"form#register_form input[name='currentYearOfStudy']")
-									.val();
-
+							
 							/* validation start */
-							if (indexNumber == "") {
-								$("span.val_indexNumber").html(
-										"This field is required.").addClass(
-										'validate');
-								validation_holder = 1;
-							} else {
-								$("span.val_indexNumber").html("");
-							}
 							if (fname == "") {
 								$("span.val_fname").html(
 										"This field is required.").addClass(
@@ -80,14 +66,7 @@ jQuery(function($) {
 							} else {
 								$("span.val_phone").html("");
 							}
-							if (year == "") {
-								$("span.val_year").html(
-										"This field is required.").addClass(
-										'validate');
-								validation_holder = 1;
-							} else {
-								$("span.val_year").html("");
-							}
+						
 							if (validation_holder == 1) { // if have a field is blank, return false
 								$("p.validate_msg").slideDown("fast");
 								return false;

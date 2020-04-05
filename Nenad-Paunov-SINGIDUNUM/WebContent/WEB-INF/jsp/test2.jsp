@@ -6,12 +6,13 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/static/css/create.css"
+	type="text/css" rel="stylesheet">
+<meta charset="UTF-16">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create student</title>
-<base href="${pageContext.request.contextPath}/static/images/"
-	target="_blank">
+<title>Create exam</title>
+<base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -26,9 +27,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="${pageContext.request.contextPath}/static/css/test.css"
-	type="text/css" rel="stylesheet">
-<!--<script src="${pageContext.request.contextPath}/static/js/student.js"></script>  -->
+<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
@@ -57,9 +56,9 @@
 			<div class="dropdown">
 				<button class="dropbtn">Students</button>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath }/testCountry"
+					<a href="${pageContext.request.contextPath }/students"
 						target="_self">Show all students</a> <a
-						href="${pageContext.request.contextPath }/createstudent"
+						href="${pageContext.request.contextPath }/create_student"
 						target="_self">Create student</a>
 				</div>
 			</div>
@@ -68,7 +67,7 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/professors"
 						target="_self">Show all professors</a> <a
-						href="${pageContext.request.contextPath }/createprofessor"
+						href="${pageContext.request.contextPath }/create_professor"
 						target="_self">Create professor</a>
 				</div>
 			</div>
@@ -77,7 +76,7 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/subjects"
 						target="_self">Show all subjects</a> <a
-						href="${pageContext.request.contextPath }/createsubject"
+						href="${pageContext.request.contextPath }/create_subject"
 						target="_self">Create subject</a>
 				</div>
 			</div>
@@ -85,7 +84,8 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/createexam"
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/titles" target="_self">Show
 						all titles</a> <a
-						href="${pageContext.request.contextPath }/createtitle"
+						href="${pageContext.request.contextPath }/create_title"
 						target="_self">Create title</a>
 				</div>
 			</div>
@@ -103,7 +103,7 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/cities" target="_self">Show
 						all cities</a> <a
-						href="${pageContext.request.contextPath }/createcity"
+						href="${pageContext.request.contextPath }/create_city"
 						target="_self">Create city</a>
 				</div>
 			</div>
@@ -112,7 +112,7 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/countries"
 						target="_self">Show all countries</a> <a
-						href="${pageContext.request.contextPath }/createcountry"
+						href="${pageContext.request.contextPath }/create_country"
 						target="_self">Create country</a>
 				</div>
 			</div>
@@ -125,63 +125,31 @@
 				<div id="wrap2">
 					<!--wrap2 start-->
 
-					<h2 class="free_account">Create student</h2>
+					<h2 class="free_account">Create exam</h2>
 
-					<form action="${pageContext.request.contextPath }/docreatestudent"
+					<form action="${pageContext.request.contextPath }/docreatetest"
 						method="post" id="register_form">
 
 						<p class="validate_msg">Please fix the errors below!</p>
+						<p>
+							<input type="hidden" name="subjectId"
+								value="${subject.subjectId}" />
+						</p>
+						<p>
+							<input type="hidden" name="examDate" value="${exam.examDate}" />
+						</p>
+						<p>
+							<select name="id">
+								<c:forEach var="tempProfessor" items="${professors}">
 
-						<p>
-							<label for="indexNumber">Index number</label> <input
-								name="indexNumber" type="text"
-								placeholder="Index number(Required)" /> <span
-								class="val_indexNumber"></span>
-						</p>
-						<p>
-							<label for="fname">First name</label> <input name="firstName"
-								type="text" placeholder="First name(Required)" /> <span
-								class="val_fname"></span>
-						</p>
-						<p>
-							<label for="lname">Last Name</label> <input name="lastName"
-								type="text" placeholder="Last name(Required)" /> <span
-								class="val_lname"></span>
-						</p>
-						<p>
-							<label for="email">Email</label> <input name="email" type="text"
-								placeholder="name@gmail.com(Required)" /> <span
-								class="val_email"></span>
-						</p>
-						<p>
-							<label for="address">Address</label> <input name="address"
-								type="text" placeholder="Address(Required)" /> <span
-								class="val_pass"></span>
-						</p>
-						<p>
-							<label for="phone">Phone number</label> <input name="phone"
-								type="text" placeholder="(XXX)XXX-XXXX(Required)" /> <span
-								class="val_phone"></span>
-						</p>
-						<p>
-							<label for="year">Current year of study</label> <input
-								name=currentYearOfStudy type="text"
-								placeholder="Current year of study(Required)" /> <span
-								class="val_year"></span>
-						</p>
-						<p>
-							<select name="cityId">
-								<c:forEach var="tempCity" items="${cities}">
-
-									<option value="${tempCity.cityId} ">${tempCity.cityName}</option>
+									<option value="${tempProfessor.id} ">${tempProfessor.firstName}
+										${tempProfessor.lastName}</option>
 
 								</c:forEach>
 							</select>
 						</p>
 
-
-
-						<input type="submit" name="submit" value="Create new student">
+						<input type="submit" name="submit" value="Create exam">
 					</form>
 
 				</div>
@@ -196,123 +164,4 @@
 
 	</section>
 </body>
-<script type="text/javascript">
-	jQuery(function($) {
-		var validation_holder;
-
-		$("form#register_form input[name='submit']").click(
-				function() {
-
-					var validation_holder = 0;
-
-					var fname = $("form#register_form input[name='fname']")
-							.val();
-					var lname = $("form#register_form input[name='lname']")
-							.val();
-					var email = $("form#register_form input[name='email']")
-							.val();
-					var email_regex = /^[\w%_\-.\d]+@[\w.\-]+.[A-Za-z]{2,6}$/; // reg ex email check	
-					var password = $(
-							"form#register_form input[name='password']").val();
-					var repassword = $(
-							"form#register_form input[name='repassword']")
-							.val();
-					var phone = $("form#register_form input[name='phone']")
-							.val();
-					var phone_regex = /^[0-9]{4,20}$/; // reg ex phone check	
-					var month = $("form#register_form select[name='month']")
-							.val(); // month
-					var day = $("form#register_form select[name='day']").val(); // day
-					var year = $("form#register_form select[name='year']")
-							.val(); // year
-					var gender = $("form#register_form input[name='gender']");
-
-					/* validation start */
-					if (fname == "") {
-						$("span.val_fname").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						$("span.val_fname").html("");
-					}
-					if (lname == "") {
-						$("span.val_lname").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						$("span.val_lname").html("");
-					}
-					if (email == "") {
-						$("span.val_email").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						if (!email_regex.test(email)) { // if invalid email
-							$("span.val_email").html("Invalid Email!")
-									.addClass('validate');
-							validation_holder = 1;
-						} else {
-							$("span.val_email").html("");
-						}
-					}
-					if (password == "") {
-						$("span.val_pass").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						$("span.val_pass").html("");
-					}
-					if (repassword == "") {
-						$("span.val_pass2").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						if (password != repassword) {
-							$("span.val_pass2")
-									.html("Password does not match!").addClass(
-											'validate');
-							validation_holder = 1;
-						} else {
-							$("span.val_pass2").html("");
-						}
-					}
-					if (phone == "") {
-						$("span.val_phone").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						if (!phone_regex.test(phone)) { // if invalid phone
-							$("span.val_phone").html("Invalid Phone Number!")
-									.addClass('validate');
-							validation_holder = 1;
-
-						} else {
-							$("span.val_phone").html("");
-						}
-					}
-					if ((month == "") || (day == "") || (year == "")) {
-						$("span.val_bday").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						$("span.val_bday").html("");
-					}
-
-					if (gender.is(':checked') == false) {
-						$("span.val_gen").html("This field is required.")
-								.addClass('validate');
-						validation_holder = 1;
-					} else {
-						$("span.val_gen").html("");
-					}
-					if (validation_holder == 1) { // if have a field is blank, return false
-						$("p.validate_msg").slideDown("fast");
-						return false;
-					}
-					validation_holder = 0; // else return true
-					/* validation end */
-				}); // click end 
-
-	}); // jQuery End
-</script>
 </html>

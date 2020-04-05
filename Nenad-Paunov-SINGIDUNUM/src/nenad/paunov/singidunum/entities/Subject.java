@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -32,22 +33,22 @@ public class Subject {
 	@Size(min = 2, max = 30, message = "Subject name must be between 3 and 30 characters")
 	@Column(name="Name")
 	private String name;
+	@NotNull(message = "Description cannot be null")
 	@Size(max = 200, message = "Description can not exceed 200 characters")
 	@Column(name="Description")
 	private String description;
+	@NotNull(message = "YearOfStudy cannot be null")
 	@Column(name = "YearOfStudy")
 	@Range(min = 1, max = 4, message = "Please select only numbers from 1 to 4")
 	private int yearOfStudy;
 	@Size(max=10)
 	private String semester;
-	@ManyToMany
-	@JoinColumn(name = "Id")
+	@ManyToMany(mappedBy="subjects")
 	private Set<Student> students;
 	@ManyToMany
-	@JoinColumn(name = "Id")
+	@JoinTable(name = "ProfessorsSubjects", joinColumns = @JoinColumn(name = "subjectId"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private Set<Professor> professor;
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "SubjectId")
+	@OneToMany(mappedBy="subject")
 	private List<Exam> exams = new ArrayList<Exam>();
 	
 

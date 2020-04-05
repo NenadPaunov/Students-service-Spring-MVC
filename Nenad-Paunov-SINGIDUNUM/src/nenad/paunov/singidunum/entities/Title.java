@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Title")
+@Table(name = "Titles")
 public class Title {
 	@Id
 	@GeneratedValue
@@ -25,8 +25,7 @@ public class Title {
 	@Size(min = 2, max = 30, message = "Title name must be between 2 and 30 characters")
 	@Column(name = "TitleName")
 	private String titleName;
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "TitleId")
+	@OneToMany(mappedBy="title")
 	private List<Professor> professors = new ArrayList<Professor>();
 	
 	public int getTitleId() {

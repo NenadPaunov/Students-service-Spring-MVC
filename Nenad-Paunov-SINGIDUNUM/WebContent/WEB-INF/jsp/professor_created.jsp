@@ -138,7 +138,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>${professor.titles.titleName}</td>
+								<td>${professor.title.titleName}</td>
 								<td>${professor.firstName}</td>
 								<td>${professor.lastName}</td>
 								<td>${professor.email}</td>

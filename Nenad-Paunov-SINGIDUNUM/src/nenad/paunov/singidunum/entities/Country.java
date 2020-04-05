@@ -25,8 +25,7 @@ public class Country {
 	@Size(min = 2, max = 30, message = "Country name must be between 2 and 30 characters")
 	@Column(name = "Name")
 	private String name;
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "CountryId")
+	@OneToMany(mappedBy="country")
 	private List<City> cities = new ArrayList<City>();
 	
 

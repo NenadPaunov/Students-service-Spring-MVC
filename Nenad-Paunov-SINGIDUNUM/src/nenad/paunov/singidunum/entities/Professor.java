@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,17 +24,14 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="Professors")
 public class Professor extends Person {
-	@NotNull
+	@NotNull(message = "ReelectionDate cannot be null")
 	@Column(name = "ReelectionDate")
 	private Date reelectionDate;
 	@ManyToOne
-	@JoinColumn(name = "TitleId")
-	private Title titles;
-	@ManyToMany(cascade = CascadeType.DETACH)
-	@JoinTable(name = "ProfessorsSubjects", joinColumns = @JoinColumn(name = "Id"), inverseJoinColumns = @JoinColumn(name = "SubjectId"))
+	private Title title;
+	@ManyToMany(mappedBy="professor", cascade = CascadeType.DETACH)
 	private Set<Subject> subjects = new HashSet<Subject>();
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "Id")
+	@OneToMany(mappedBy="professor")
 	private List<Exam> exams = new ArrayList<Exam>();
 	
 	public Date getReelectionDate() {
@@ -43,11 +41,11 @@ public class Professor extends Person {
 	public void setReelectionDate(Date reelectionDate) {
 		this.reelectionDate = reelectionDate;
 	}
-	public Title getTitles() {
-		return titles;
+	public Title getTitle() {
+		return title;
 	}
-	public void setTitles(Title titles) {
-		this.titles = titles;
+	public void setTitle(Title title) {
+		this.title = title;
 	}
 	public Set<Subject> getSubjects() {
 		return subjects;
@@ -67,8 +65,7 @@ public class Professor extends Person {
 	}
 	@Override
 	public String toString() {
-		return super.toString()+ "Professor [reelectionDate=" + reelectionDate + ", titles=" + titles + ", subjects=" + subjects
-				+ ", exams=" + exams + "]";
+		return super.toString()+ "Professor [reelectionDate=" + reelectionDate + ", title=" + title;
 	}
 	
 	
