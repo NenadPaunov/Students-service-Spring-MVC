@@ -7,17 +7,16 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.ConstraintMode;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -43,10 +42,43 @@ public class Subject {
 	private int yearOfStudy;
 	@Size(max=10)
 	private String semester;
-	@ManyToMany(mappedBy="subjects")
+	@ManyToMany(fetch = FetchType.LAZY,
+	        cascade =
+	        {
+	                CascadeType.DETACH,
+	                CascadeType.MERGE,
+	                CascadeType.REFRESH,
+	                CascadeType.PERSIST
+	        },
+	        targetEntity = Student.class)
+	@JoinTable(name = "StudentsSubjects",
+	        inverseJoinColumns = @JoinColumn(name = "studentId",
+	                nullable = false,
+	                updatable = false),
+	        joinColumns = @JoinColumn(name = "subjectId",
+	                nullable = false,
+	                updatable = false),
+	        foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+	        inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 	private Set<Student> students;
-	@ManyToMany
-	@JoinTable(name = "ProfessorsSubjects", joinColumns = @JoinColumn(name = "subjectId"), inverseJoinColumns = @JoinColumn(name = "id"))
+	@ManyToMany(fetch = FetchType.LAZY,
+	        cascade =
+	        {
+	                CascadeType.DETACH,
+	                CascadeType.MERGE,
+	                CascadeType.REFRESH,
+	                CascadeType.PERSIST
+	        },
+	        targetEntity = Professor.class)
+	@JoinTable(name = "ProfessorsSubjects",
+	        inverseJoinColumns = @JoinColumn(name = "professorId",
+	                nullable = false,
+	                updatable = false),
+	        joinColumns = @JoinColumn(name = "subjectId",
+	                nullable = false,
+	                updatable = false),
+	        foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+	        inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 	private Set<Professor> professor;
 	@OneToMany(mappedBy="subject")
 	private List<Exam> exams = new ArrayList<Exam>();

@@ -32,4 +32,9 @@ public class SubjectsDao {
 	public void deleteSubject(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Subject.class, id));
 	}
+	
+	public Subject getSubjectByName(String name) {
+		return (Subject) session.getCurrentSession().createQuery("FROM Subject WHERE name=:name").setParameter("name", name).uniqueResult();
+		
+	}
 }

@@ -159,7 +159,7 @@
 						</p>
 						<p></p>
 						<p>
-							<select name="id">
+							<select name="id" multiple>
 								<c:forEach var="tempProfessor" items="${professors}">
 
 									<option value="${tempProfessor.id} ">${tempProfessor.firstName}

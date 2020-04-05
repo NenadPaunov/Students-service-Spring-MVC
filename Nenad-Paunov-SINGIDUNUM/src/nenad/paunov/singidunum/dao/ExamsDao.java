@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import nenad.paunov.singidunum.entities.Exam;
+import nenad.paunov.singidunum.entities.Subject;
 
 @Transactional
 @Component
@@ -32,4 +33,12 @@ public class ExamsDao {
 	public void deleteExam(int id) {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Exam.class, id));
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Exam> getExamsByName(String examName) {
+		return session.getCurrentSession().createQuery("FROM Exam WHERE examName=:examName").setParameter("examName", examName).list();
+		
+	}
+	
+	
 }

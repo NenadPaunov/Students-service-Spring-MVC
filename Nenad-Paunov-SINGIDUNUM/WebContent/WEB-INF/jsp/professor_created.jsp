@@ -117,7 +117,7 @@
 						<div class="row">
 							<div class="col-sm-8">
 								<h2>
-									<b>Professor has been successfully created</b>
+									<b>Professor has been successfully created/updated</b>
 								</h2>
 							</div>
 

@@ -14,15 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import nenad.paunov.singidunum.dao.SubjectsDao;
 import nenad.paunov.singidunum.entities.Exam;
 import nenad.paunov.singidunum.entities.Professor;
+import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Subject;
 
 @Service
-@Transactional
 public class SubjectsService {
 	@Autowired
 	SubjectsDao subjectsDao;
-	@Autowired
-	SessionFactory session;
+
 	
 	public List<Subject> getAllSubjects() {
 		return subjectsDao.getAllSubjects();
@@ -40,20 +39,19 @@ public class SubjectsService {
 		 subjectsDao.deleteSubject(id);
 	}
 	
-//	@SuppressWarnings("unchecked")
-//	public List<Professor> getProfessorsBySubject(int subjectId){
-//		System.out.println("*"+subjectId+"*");
-//		Query<Professor> query = session.getCurrentSession().createQuery("FROM ProfessorsSubjects WHERE subjectId=:subjectId");
-//		query.setParameter("subjectId", subjectId);
-//		List<Professor> professorsSubjects = query.getResultList();
-//		System.out.println(professorsSubjects.size());
-//		//List<Professor> professors = new ArrayList<Professor>();
-//		return professorsSubjects;
-//	}
-	
 	public Set<Professor> getProfessorsBySubject(int id) {
-		return subjectsDao.getSubject(id).getProfessor();
-		
+		return subjectsDao.getSubject(id).getProfessor();	
+	}
 	
+	public Set<Professor> getProfessorsBySubjectName(String name) {
+		return subjectsDao.getSubjectByName(name).getProfessor();
+	}
+	
+	public Subject getSubjectByName(String name) {
+		return subjectsDao.getSubjectByName(name);
+	}
+	
+	public Set<Student> getStudentsBySubject(int id) {
+		return subjectsDao.getSubject(id).getStudents();
 	}
 }

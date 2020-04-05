@@ -4,11 +4,16 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +32,7 @@ public class Exam {
 	@Column(name="ExamName")
 	private String examName;
 	@NotNull
-	@Range(min = 1, max = 7, message = "Please select only numbers from 1 to 9")
+	@Range(min = 1, max = 12, message = "Please select only numbers from 1 to 12")
 	@Column(name="ESPB")
 	private int espb;
 	@NotNull
@@ -37,7 +42,24 @@ public class Exam {
 	private Subject subject;
 	@ManyToOne
 	private Professor professor;
-	@OneToMany(mappedBy="exams")
+	@ManyToMany(fetch = FetchType.LAZY,
+	        cascade =
+	        {
+	                CascadeType.DETACH,
+	                CascadeType.MERGE,
+	                CascadeType.REFRESH,
+	                CascadeType.PERSIST
+	        },
+	        targetEntity = Student.class)
+	@JoinTable(name = "StudentsExams",
+	        inverseJoinColumns = @JoinColumn(name = "studentId",
+	                nullable = false,
+	                updatable = false),
+	        joinColumns = @JoinColumn(name = "examId",
+	                nullable = false,
+	                updatable = false),
+	        foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+	        inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 	private Set<Student> students = new HashSet<Student>();
 	public int getExamId() {
 		return examId;

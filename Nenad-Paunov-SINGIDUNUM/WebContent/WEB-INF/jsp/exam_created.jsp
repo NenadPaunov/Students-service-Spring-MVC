@@ -6,13 +6,12 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/static/css/create.css"
-	type="text/css" rel="stylesheet">
-<meta charset="UTF-16">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exam registration</title>
-<base href="${pageContext.request.contextPath}/static/images/">
+<title>Exam created</title>
+<base href="${pageContext.request.contextPath}/static/images/"
+	target="_blank">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -27,12 +26,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-</script>
-<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -84,8 +77,7 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a
-						href="${pageContext.request.contextPath }/create_exam"
+						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
 				</div>
 			</div>
@@ -119,21 +111,38 @@
 
 		</div>
 		<div id="main">
+			<div class="container">
+				<div class="table-wrapper">
+					<div class="table-title">
+						<div class="row">
+							<div class="col-sm-8">
+								<h2>
+									<b>Exam has been successfully created/updated</b>
+								</h2>
+							</div>
 
-			<div id="wrap">
-				<!--wrap start-->
-				<div id="wrap2">
-					<!--wrap2 start-->
-
-					<h2 class="free_account">Exam registered</h2>
-
-					<p>${exam.examName }</p>
-					<p>${exam.students.firstName }</p>
-
+						</div>
+					</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Subject</th>
+								<th>Professor</th>
+								<th>Exam date</th>
+								<th>ESPB</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>${exam.examName}</td>
+								<td>${exam.professor.firstName} ${exam.professor.lastName}</td>
+								<td>${exam.examDate}</td>
+								<td>${exam.espb}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<!--wrap2 end-->
 			</div>
-			<!--wrap1 end-->
 
 		</div>
 		<footer id="footer">

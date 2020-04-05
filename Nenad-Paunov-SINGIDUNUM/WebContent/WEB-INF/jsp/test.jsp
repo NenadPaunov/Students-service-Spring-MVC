@@ -11,7 +11,7 @@
 <meta charset="UTF-16">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create exam</title>
+<title>Exam registration</title>
 <base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
@@ -125,15 +125,16 @@
 				<div id="wrap2">
 					<!--wrap2 start-->
 
-					<h2 class="free_account">Create exam</h2>
+					<h2 class="free_account">Exam registration</h2>
 
 					<form action="${pageContext.request.contextPath }/test2"
 						method="post" id="register_form">
 
 						<p class="validate_msg">Please fix the errors below!</p>
 
-						<p>${message}</p>
+						<p class="wrong_date_exam">${message}</p>
 						<p>
+
 							<select name="subjectId">
 								<c:forEach var="tempSubject" items="${subjects}">
 
@@ -142,16 +143,18 @@
 								</c:forEach>
 							</select>
 						</p>
-
-
 						<p>
-							<label id="examDate" for="examDate">Re-election date</label> <input
-								name=examDate type="date" min="2020-04-01" max="2030-04-20"
-								required /> <span class="val_examDate"></span>
+							<select name="id">
+								<c:forEach var="tempStudent" items="${students}">
+
+									<option value="${tempStudent.id} ">${tempStudent.firstName}
+										${tempStudent.lastName}</option>
+
+								</c:forEach>
+							</select>
 						</p>
 
-
-						<input type="submit" name="submit" value="Select subject">
+						<input type="submit" name="submit" value="Exam registration">
 					</form>
 
 				</div>

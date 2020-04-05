@@ -1,5 +1,6 @@
 package nenad.paunov.singidunum.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Professor;
@@ -75,7 +77,7 @@ public class SubjectsController {
 	}
 	
 	@RequestMapping(value = "/updatesubject/{subjectId}", method = RequestMethod.POST)
-	public String doUpdate(@PathVariable int subjectId, Model model, @Valid Subject subject, Professor professor, BindingResult result) {
+	public String doUpdate(@PathVariable int subjectId, @RequestParam ArrayList<Integer> list, Model model, @Valid Subject subject, Professor professor, BindingResult result) {
 		if (result.hasErrors()) {
 			System.out.println("Form is not valid");
 			List<ObjectError> errors = result.getAllErrors();
@@ -86,6 +88,7 @@ public class SubjectsController {
 		} else {
 			System.out.println("Form validated successsfully!");
 		}
+		//Izvuci iz liste id-eve profesora
 		Set<Professor> profs = new HashSet<Professor>();
 		Professor newProfessor = professorsServices.getProfessor(professor.getId());
 		profs.add(newProfessor);

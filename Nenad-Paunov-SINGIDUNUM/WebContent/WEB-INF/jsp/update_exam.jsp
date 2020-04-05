@@ -11,7 +11,7 @@
 <meta charset="UTF-16">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exam registration</title>
+<title>Update exam</title>
 <base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
@@ -27,7 +27,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
@@ -125,10 +124,51 @@
 				<div id="wrap2">
 					<!--wrap2 start-->
 
-					<h2 class="free_account">Exam registered</h2>
+					<h2 class="free_account">Update exam</h2>
 
-					<p>${exam.examName }</p>
-					<p>${exam.students.firstName }</p>
+					<form
+						action="${pageContext.request.contextPath }/updateexam/${exam.examId}"
+						method="post" id="register_form">
+
+						<p class="validate_msg">Please fix the errors below!</p>
+
+						<p class="wrong_date_exam">${message}</p>
+
+						<p>
+							<input type="hidden" name="examName"
+								value="${exam.examName}" />
+						</p>
+						
+						<p>
+							<input type="hidden" name="subjectId"
+								value="${subject.subjectId}" />
+						</p>
+						
+						<p>
+							<label for="examDate">Exam date</label> <input name="examDate"
+								type="date" placeholder="Exam date(Required)"
+								value="${exam.examDate}" min="2020-04-01" max="2030-04-20"
+								required /> <span class="val_examDate"></span>
+						</p>
+						<p>
+							<label for="espb">ESPB</label> <input name="espb"
+								type="number" placeholder="ESPB(Required)" value="${exam.espb}"
+								min="1" max="10" required /> <span class="val_espb"></span>
+						</p>
+
+						<p>
+							<select name="id">
+								<c:forEach var="tempProfessor" items="${professors}">
+
+									<option value="${tempProfessor.id} ">${tempProfessor.firstName}
+										${tempProfessor.lastName}</option>
+
+								</c:forEach>
+							</select>
+						</p>
+
+						<input type="submit" name="submit" value="Update exam">
+					</form>
 
 				</div>
 				<!--wrap2 end-->

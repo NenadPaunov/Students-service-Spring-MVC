@@ -10,7 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.ConstraintMode;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,11 +28,43 @@ public class Student extends Person {
 	@Range(min = 1, max = 7, message = "Please select only numbers from 1 to 7")
 	@Column(name = "CurrentYearOfStudy")
 	private int currentYearOfStudy;
-	@ManyToMany(cascade = CascadeType.DETACH)
-	@JoinTable(name = "StudentsSubjects", joinColumns = @JoinColumn(name = "Id"), inverseJoinColumns = @JoinColumn(name = "SubjectId"))
+	@ManyToMany(fetch = FetchType.LAZY,
+	        cascade =
+	        {
+	                CascadeType.DETACH,
+	                CascadeType.MERGE,
+	                CascadeType.REFRESH,
+	                CascadeType.PERSIST
+	        },
+	        targetEntity = Subject.class)
+	@JoinTable(name = "StudentsSubjects",
+	        joinColumns = @JoinColumn(name = "studentId",
+	                nullable = false,
+	                updatable = false),
+	        inverseJoinColumns = @JoinColumn(name = "subjectId",
+	                nullable = false,
+	                updatable = false),
+	        foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+	        inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 	private Set<Subject> subjects = new HashSet<Subject>();
-	@ManyToMany(cascade = CascadeType.DETACH)
-	@JoinTable(name = "StudentsExams", joinColumns = @JoinColumn(name = "Id"), inverseJoinColumns = @JoinColumn(name = "ExamId"))
+	@ManyToMany(fetch = FetchType.LAZY,
+	        cascade =
+	        {
+	                CascadeType.DETACH,
+	                CascadeType.MERGE,
+	                CascadeType.REFRESH,
+	                CascadeType.PERSIST
+	        },
+	        targetEntity = Exam.class)
+	@JoinTable(name = "StudentsExams",
+	        joinColumns = @JoinColumn(name = "studentId",
+	                nullable = false,
+	                updatable = false),
+	        inverseJoinColumns = @JoinColumn(name = "examId",
+	                nullable = false,
+	                updatable = false),
+	        foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+	        inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 	private Set<Exam> exams = new HashSet<Exam>();
 	public String getIndexNumber() {
 		return indexNumber;

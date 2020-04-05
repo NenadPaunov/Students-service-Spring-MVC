@@ -132,7 +132,7 @@
 
 						<p class="validate_msg">Please fix the errors below!</p>
 
-						<p id="wrong_date_exam" >${message}</p>
+						<p class="wrong_date_exam" >${message}</p>
 						<p>
 
 							<select name="subjectId">

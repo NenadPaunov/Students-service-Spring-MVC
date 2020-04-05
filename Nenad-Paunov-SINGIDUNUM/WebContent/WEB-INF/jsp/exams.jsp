@@ -125,11 +125,11 @@
 						<div class="row">
 							<div class="col-sm-8">
 								<h2>
-									<b> Students details</b>
+									<b> Exam details</b>
 								</h2>
 							</div>
 							<div class="col-sm-4">
-								<a href="${pageContext.request.contextPath }/create_student"
+								<a href="${pageContext.request.contextPath }/create_exam"
 									target="_self"><button type="button"
 										class="btn btn-info add-new">
 										<i class="fa fa-plus"></i> Add New
@@ -140,11 +140,10 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Index number</th>
-								<th>First name</th>
-								<th>Last name</th>
-								<th>Email</th>
-								<th>Current year of study</th>
+								<th>Subject</th>
+								<th>Professor</th>
+								<th>Exam date</th>
+								<th>ESPB</th>
 								<th>See all details</th>
 								<th>Edit</th>
 								<th>Delete</th>
@@ -152,26 +151,26 @@
 						</thead>
 						<tbody>
 							<tr>
-								<c:forEach var="tempStudent" items="${students}">
+								<c:forEach var="tempExam" items="${exams}">
 									<tr>
-										<td>${tempStudent.indexNumber}</td>
-										<td>${tempStudent.firstName}</td>
-										<td>${tempStudent.lastName}</td>
-										<td>${tempStudent.email}</td>
-										<td>${tempStudent.currentYearOfStudy}</td>
+										<td>${tempExam.subject.name}</td>
+										<td>${tempExam.professor.firstName}
+											${tempExam.professor.lastName}</td>
+										<td>${tempExam.examDate}</td>
+										<td>${tempExam.espb}</td>
 										<td><a
 											href="${pageContext.request.contextPath }/createstudent"
 											target="_self" class="fullscreen" title="See all details"
 											data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
 										</td>
 										<td><a
-											href="${pageContext.request.contextPath}/doupdatestudent/${tempStudent.id}"
+											href="${pageContext.request.contextPath}/doupdateexam/${tempExam.examId}"
 											class="edit" title="Edit" data-toggle="tooltip"><i
 												class="material-icons">&#xE254;</i></a></td>
 										<td><a class="
 									delete" title="Delete"
 											data-toggle="tooltip"
-											onclick="confirmDelete(${tempStudent.id})"><i
+											onclick="confirmDelete(${tempExam.examId})"><i
 												class="material-icons">&#xE872;</i></a></td>
 									</tr>
 								</c:forEach>
