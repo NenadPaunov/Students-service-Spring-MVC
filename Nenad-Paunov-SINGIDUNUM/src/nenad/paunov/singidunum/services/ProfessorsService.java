@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import nenad.paunov.singidunum.dao.ProfessorsDao;
 import nenad.paunov.singidunum.entities.Professor;
+import nenad.paunov.singidunum.entities.Student;
 
 @Service
 public class ProfessorsService {
@@ -28,5 +29,7 @@ public class ProfessorsService {
 	public void deleteProfessor(int id) {
 		professorsDao.deleteProfessor(id);
 	}
-
+	public  List<Professor> getPaginated(int page, int number){
+		return professorsDao.getPaginated(page, number);
+	}
 }

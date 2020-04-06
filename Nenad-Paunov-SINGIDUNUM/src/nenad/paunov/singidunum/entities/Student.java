@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.Range;
 @Table(name="Students")
 public class Student extends Person {
 	@NotNull(message = "Index number cannot be null")
-	@Size(min = 1, max = 10, message = "Index number must have 10 characters")
+	@Size(min = 10, max = 10, message = "Index number must have 10 characters")
 	@Column(unique = true, name = "IndexNumber")
 	private String indexNumber;
 	@NotNull(message = "Current year of study cannot be null")

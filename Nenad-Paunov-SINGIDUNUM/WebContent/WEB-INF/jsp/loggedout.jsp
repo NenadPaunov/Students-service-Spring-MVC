@@ -8,10 +8,10 @@
 	type="text/css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/static/css/create.css"
 	type="text/css" rel="stylesheet">
-<meta charset="UTF-16">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exam registration</title>
+<title>Home</title>
 <base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
@@ -27,7 +27,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/subject.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/city.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
@@ -37,11 +37,21 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
-</head>
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="loginUrl" value="/login" />
+				<form align="right" name="form1" action="${loginUrl}" method="post">
+					<input type="submit" value="Log in" />
+				</form>
+			</div>
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -86,8 +96,7 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
-						<a
+						target="_self">Create exam</a> <a
 						href="${pageContext.request.contextPath }/exam_registration"
 						target="_self">Exam registration</a>
 				</div>
@@ -123,20 +132,7 @@
 		</div>
 		<div id="main">
 
-			<div id="wrap">
-				<!--wrap start-->
-				<div id="wrap2">
-					<!--wrap2 start-->
-
-					<h2 class="free_account">Exam registered</h2>
-
-					<p>${exam.examName }</p>
-					<p>${exam.students.firstName }</p>
-
-				</div>
-				<!--wrap2 end-->
-			</div>
-			<!--wrap1 end-->
+			<p id="log_out_message">You have logged out...</p>
 
 		</div>
 		<footer id="footer">

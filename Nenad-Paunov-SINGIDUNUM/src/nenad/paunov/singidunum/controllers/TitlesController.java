@@ -92,4 +92,12 @@ public class TitlesController {
 		model.addAttribute("titles", titles);
 		return "titles";
 	}
+	
+	 @RequestMapping("/titles/{page}/{num}")
+	    public String paginatedTitles(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)titlesService.getAllTitles().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("titles", titlesService.getPaginated(page, num));
+	        return "titles";
+	    }
 }

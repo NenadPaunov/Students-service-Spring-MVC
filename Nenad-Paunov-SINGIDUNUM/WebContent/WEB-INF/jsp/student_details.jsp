@@ -34,7 +34,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -192,10 +197,10 @@
 							<tr>
 								<c:forEach var="exam" items="${exams}">
 									<tr>
-									<td>${exam.subject.name}</td>
-									<td>${exam.professor.firstName}${exam.professor.lastName}</td>
-									<td>${exam.examDate}</td>
-									<td>${exam.espb}</td>
+										<td>${exam.subject.name}</td>
+										<td>${exam.professor.firstName}${exam.professor.lastName}</td>
+										<td>${exam.examDate}</td>
+										<td>${exam.espb}</td>
 									</tr>
 								</c:forEach>
 							</tr>

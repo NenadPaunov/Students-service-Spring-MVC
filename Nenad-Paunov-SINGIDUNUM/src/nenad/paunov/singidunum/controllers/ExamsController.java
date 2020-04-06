@@ -163,6 +163,13 @@ public class ExamsController {
 	public String createExamRegistration(Model model, Subject subject, Student student) {
 		Subject subjectDatabase = subjectService.getSubject(subject.getSubjectId());
 		Exam exam = examsService.getExamByName(subjectDatabase.getName());
+		
+		if(exam.getExamName().equals("Empty date")) {
+			String message = "There is no exam for the chosen subject";
+			model.addAttribute("message", message);
+		}
+		
+		
 		if (!examsService.getRegisterExamDate(exam.getExamName())) {
 			String message = "The exam can only be registered in the last week before the exam begins";
 			model.addAttribute("message", message);
@@ -193,5 +200,13 @@ public class ExamsController {
 		return "exam_registration2";
 
 	}
+	
+	 @RequestMapping("/exams/{page}/{num}")
+	    public String paginatedExams(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)examsService.getAllExams().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("exams", examsService.getPaginated(page, num));
+	        return "exams";
+	    }
 
 }

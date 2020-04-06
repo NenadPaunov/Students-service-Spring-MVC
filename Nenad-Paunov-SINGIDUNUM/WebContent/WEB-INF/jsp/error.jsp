@@ -33,7 +33,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -117,8 +122,8 @@
 				<div class="table-wrapper">
 					<div class="table-title">
 						<div class="row">
-							<p id="error_page" >Ooops, something when wrong, we are sorry!! Please try
-								again later..</p>
+							<p id="error_page">Ooops, something when wrong, we are
+								sorry!! Please try again later..</p>
 						</div>
 					</div>
 

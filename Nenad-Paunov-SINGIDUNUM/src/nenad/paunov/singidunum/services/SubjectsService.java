@@ -54,4 +54,8 @@ public class SubjectsService {
 	public Set<Student> getStudentsBySubject(int id) {
 		return subjectsDao.getSubject(id).getStudents();
 	}
+	
+	public  List<Subject> getPaginated(int page, int number){
+		return subjectsDao.getPaginated(page, number);
+	}
 }

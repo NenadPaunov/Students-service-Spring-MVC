@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/static/css/create.css"
+<link href="${pageContext.request.contextPath}/static/css/create.css"
 	type="text/css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,7 +41,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<label> <input type="submit" value="Log out" /></label>
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -84,9 +89,9 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
-						<a
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
+						target="_self">Create exam</a> <a
 						href="${pageContext.request.contextPath }/exam_registration"
 						target="_self">Exam registration</a>
 				</div>
@@ -137,42 +142,42 @@
 						<p>
 							<label for="indexNumber">Index number</label> <input
 								name="indexNumber" type="text"
-								placeholder="Index number(Required)" maxlength = "10"/> <span
+								placeholder="Index number(Required)" minlength="10" maxlength="10" /> <span
 								class="val_indexNumber"></span>
 						</p>
 						<p>
 							<label for="fname">First name</label> <input name="firstName"
-								type="text" placeholder="First name(Required)" minlength="3" maxlength = "30"/> <span
-								class="val_fname"></span>
+								type="text" placeholder="First name(Required)" minlength="3"
+								maxlength="30" /> <span class="val_fname"></span>
 						</p>
 						<p>
 							<label for="lname">Last Name</label> <input name="lastName"
-								type="text" placeholder="Last name(Required)" minlength="3" maxlength = "30"/> <span
-								class="val_lname"></span>
+								type="text" placeholder="Last name(Required)" minlength="3"
+								maxlength="30" /> <span class="val_lname"></span>
 						</p>
 						<p>
 							<label for="email">Email</label> <input name="email" type="text"
-								placeholder="name@gmail.com(Required)" maxlength = "30"/> <span
+								placeholder="name@gmail.com(Required)" maxlength="30" /> <span
 								class="val_email"></span>
 						</p>
 						<p>
 							<label for="address">Address</label> <input name="address"
-								type="text" placeholder="Address(Required)" minlength="3" maxlength = "50"/> <span
-								class="val_address"></span>
+								type="text" placeholder="Address(Required)" minlength="3"
+								maxlength="50" /> <span class="val_address"></span>
 						</p>
 						<p>
 							<label for="phone">Phone number</label> <input name="phone"
-								type="text" placeholder="(XXX)XXX-XXXX(Required)" minlength="6" maxlength = "15"/> <span
-								class="val_phone"></span>
+								type="text" placeholder="(XXX)XXX-XXXX(Required)" minlength="6"
+								maxlength="15" /> <span class="val_phone"></span>
 						</p>
 						<p>
 							<label for="year">Current year of study</label> <input
 								name=currentYearOfStudy type="number"
-								placeholder="Current year of study(Required)"  min="1" max="7"/> <span
-								class="val_year"></span>
+								placeholder="Current year of study(Required)" min="1" max="7" />
+							<span class="val_year"></span>
 						</p>
-						<p><label for="city">City</label>
-							<select name="cityId">
+						<p>
+							<label for="city">City</label> <select name="cityId">
 								<c:forEach var="tempCity" items="${cities}">
 
 									<option value="${tempCity.cityId} ">${tempCity.cityName}</option>

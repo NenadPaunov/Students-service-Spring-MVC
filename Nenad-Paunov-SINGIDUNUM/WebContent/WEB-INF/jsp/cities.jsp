@@ -41,7 +41,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -178,6 +183,14 @@
 
 						</tbody>
 					</table>
+					<form>
+						<input class="form-control" type="text" id="num" value="${num}">
+						<button style="background-color: red" class="btn btn-success"
+							type="submit">submit</button>
+					</form>
+					<c:forEach var="i" begin="1" end="${pages }" step="1">
+						<a href="${pageContext.request.contextPath}/cities/${i}/${num}">${i}</a>
+					</c:forEach>
 				</div>
 			</div>
 
@@ -187,5 +200,20 @@
 		</footer>
 
 	</section>
+	<script>
+	   window
+       .addEventListener(
+               'load',
+               function() {
+                   document
+                           .getElementById("num")
+                           .addEventListener(
+                                   "change",
+                                   function(e) {
+                                       window.location.href = "${pageContext.request.contextPath}/cities/1/"
+                                               + document
+                                                       .getElementById("num").value;
+                                   });
+               });</script>
 </body>
 </html>

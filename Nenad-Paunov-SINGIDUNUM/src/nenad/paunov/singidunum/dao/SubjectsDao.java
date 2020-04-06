@@ -3,12 +3,14 @@ package nenad.paunov.singidunum.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import nenad.paunov.singidunum.entities.Exam;
 import nenad.paunov.singidunum.entities.Professor;
+import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Subject;
 
 @Transactional
@@ -42,4 +44,11 @@ public class SubjectsDao {
 		return (Subject) session.getCurrentSession().createQuery("FROM Subject WHERE name=:name").setParameter("name", name).uniqueResult();
 		
 	}
+	
+	 public List<Subject> getPaginated(int page, int number) {
+	        Query<Subject> query = session.getCurrentSession().createQuery("from Subject", Subject.class);
+	        query.setFirstResult((page - 1) * number);
+	        query.setMaxResults(number);
+	        return query.getResultList();
+	    }
 }

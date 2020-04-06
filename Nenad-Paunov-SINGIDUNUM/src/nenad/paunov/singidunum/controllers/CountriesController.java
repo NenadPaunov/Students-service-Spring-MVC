@@ -92,4 +92,12 @@ public class CountriesController {
 		model.addAttribute("countries", countries);
 		return "countries";
 	}
+	
+	 @RequestMapping("/countries/{page}/{num}")
+	    public String paginatedCountries(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)countriesService.getAllCountries().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("countries",countriesService.getPaginated(page, num));
+	        return "countries";
+	    }
 }

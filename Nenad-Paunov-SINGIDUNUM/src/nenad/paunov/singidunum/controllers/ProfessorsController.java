@@ -127,4 +127,12 @@ public class ProfessorsController {
 		model.addAttribute("professors", professors);
 		return "professors";
 	}
+	
+	 @RequestMapping("/professors/{page}/{num}")
+	    public String paginatedProfessors(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)professorsServices.getAllProfessors().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("professors", professorsServices.getPaginated(page, num));
+	        return "professors";
+	    }
 }

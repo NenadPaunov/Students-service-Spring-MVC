@@ -168,4 +168,11 @@ public class StudentsController {
 		return "students";
 	}
 
+	 @RequestMapping("/students/{page}/{num}")
+	    public String paginatedStudents(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)studentsServices.getAllStudents().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("students", studentsServices.getPaginated(page, num));
+	        return "students";
+	    }
 }

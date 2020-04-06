@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import nenad.paunov.singidunum.dao.ExamsDao;
 import nenad.paunov.singidunum.entities.Exam;
+import nenad.paunov.singidunum.entities.Student;
 
 @Service
 @Transactional
@@ -49,12 +50,23 @@ public class ExamsService {
 
 	public Exam getExamByName(String examName) {
 		List<Exam> exams = examsDao.getExamsByName(examName);
-		if (exams.size() != 0)
+		if(exams.isEmpty()) {
+			Exam exam = new Exam();
+			exam.setExamName("Empty date");
+			return exam ;
+		}
+		if (exams.size() != 0) 
 			exams.sort((o1, o2) -> o1.getExamDate().compareTo(o2.getExamDate()));
 		return exams.get(0);
 	}
 
 	public boolean getRegisterExamDate(String examName) {
+		List<Exam> exams = examsDao.getExamsByName(examName);
+		if(exams.isEmpty()) {
+			Exam exam = new Exam();
+			exam.setExamName("Empty date");
+			return false ;
+		}
 		int counter = 0;
 		long daysBetween = ChronoUnit.DAYS.between(LocalDate.now(),
 				getExamByName(examName).getExamDate().toLocalDate());
@@ -68,5 +80,7 @@ public class ExamsService {
 		return true;
 
 	}
-
+	public  List<Exam> getPaginated(int page, int number){
+		return examsDao.getPaginated(page, number);
+	}
 }

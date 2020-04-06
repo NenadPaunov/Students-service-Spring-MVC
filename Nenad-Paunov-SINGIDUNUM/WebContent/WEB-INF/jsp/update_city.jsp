@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/static/css/create.css"
+<link href="${pageContext.request.contextPath}/static/css/create.css"
 	type="text/css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,7 +41,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -84,9 +89,9 @@
 				<button class="dropbtn">Exams</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
-						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
-						<a
+						all exams</a> <a
+						href="${pageContext.request.contextPath }/create_exam"
+						target="_self">Create exam</a> <a
 						href="${pageContext.request.contextPath }/exam_registration"
 						target="_self">Exam registration</a>
 				</div>
@@ -129,25 +134,26 @@
 
 					<h2 class="free_account">Update city</h2>
 
-					<form action="${pageContext.request.contextPath }/updatecity/${city.cityId}"
+					<form
+						action="${pageContext.request.contextPath }/updatecity/${city.cityId}"
 						method="post" id="register_form">
 
 						<p class="validate_msg">Please fix the errors below!</p>
 
 						<p>
-							<label for="cityName">City name</label> <input
-								name="cityName" type="text"
-								placeholder="City name(Required)" minlength="2" maxlength = "30" value="${city.cityName}" /> <span
+							<label for="cityName">City name</label> <input name="cityName"
+								type="text" placeholder="City name(Required)" minlength="2"
+								maxlength="30" value="${city.cityName}" /> <span
 								class="val_cityName"></span>
 						</p>
 						<p>
-							<label for="zipCode">ZIP code</label> <input
-								name="zipCode" type="text"
-								placeholder="ZIP code(Required)" minlength="2" maxlength = "10" value="${city.zipCode}" /> <span
+							<label for="zipCode">ZIP code</label> <input name="zipCode"
+								type="text" placeholder="ZIP code(Required)" minlength="2"
+								maxlength="10" value="${city.zipCode}" /> <span
 								class="val_zipCode"></span>
 						</p>
-						<p><label for="country">Country</label>
-							<select name="countryId">
+						<p>
+							<label for="country">Country</label> <select name="countryId">
 								<c:forEach var="tempCountry" items="${countries}">
 
 									<option value="${tempCountry.countryId} ">${tempCountry.name}</option>

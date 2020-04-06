@@ -106,4 +106,12 @@ public class CitiesController {
 		model.addAttribute("cities", cities);
 		return "cities";
 	}
+	
+	 @RequestMapping("/cities/{page}/{num}")
+	    public String paginatedCities(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)citiesService.getAllCities().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("cities", citiesService.getPaginated(page, num));
+	        return "cities";
+	    }
 }

@@ -3,6 +3,7 @@ package nenad.paunov.singidunum.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,5 +34,10 @@ public class StudentsDao {
 			session.getCurrentSession().delete(session.getCurrentSession().get(Student.class, id));
 		
 	}
-
+	 public List<Student> getPaginated(int page, int number) {
+	        Query<Student> query = session.getCurrentSession().createQuery("from Student", Student.class);
+	        query.setFirstResult((page - 1) * number);
+	        query.setMaxResults(number);
+	        return query.getResultList();
+	    }
 }

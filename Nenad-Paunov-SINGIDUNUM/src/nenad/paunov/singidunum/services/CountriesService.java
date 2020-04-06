@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import nenad.paunov.singidunum.dao.CountriesDao;
 import nenad.paunov.singidunum.entities.Country;
+import nenad.paunov.singidunum.entities.Student;
 @Service
 public class CountriesService {
 	@Autowired
@@ -26,5 +27,9 @@ public class CountriesService {
 	
 	public void deleteCountry(int id) {
 		 countriesDao.deleteCountry(id);
+	}
+	
+	public  List<Country> getPaginated(int page, int number){
+		return countriesDao.getPaginated(page, number);
 	}
 }

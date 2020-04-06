@@ -284,3 +284,15 @@ div.details-page-width {
 	height: 1500px;
 }
 /* End table tag */
+/* Login page */
+.logoutLblPos {
+	background-color: black;
+	font-color: red;
+	right: 10px;
+	top: 5px;
+}
+#log_out_message{
+	color:red;
+	font-size: 18px;
+	font-weight: bold;
+}

@@ -119,4 +119,12 @@ public class SubjectsController {
 		model.addAttribute("subjects", subjects);
 		return "subjects";
 	}
+	
+	 @RequestMapping("/subjects/{page}/{num}")
+	    public String paginatedSubjects(@PathVariable("page") int page, @PathVariable("num") int num, Model model) {
+	        model.addAttribute("pages", Math.ceil((double)subjectsService.getAllSubjects().size()/num));
+	        model.addAttribute("num", num);
+	        model.addAttribute("subjects", subjectsService.getPaginated(page, num));
+	        return "subjects";
+	    }
 }

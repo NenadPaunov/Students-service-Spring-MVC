@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import nenad.paunov.singidunum.dao.CitiesDao;
 import nenad.paunov.singidunum.entities.City;
+import nenad.paunov.singidunum.entities.Student;
 
 @Service
 @Transactional
@@ -29,6 +30,10 @@ public class CitiesService {
 
 	public void deleteCity(int id) {
 		 citiesDao.deleteCity(id);
+	}
+	
+	public  List<City> getPaginated(int page, int number){
+		return citiesDao.getPaginated(page, number);
 	}
 
 }

@@ -41,7 +41,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -86,8 +91,7 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
-						<a
+						target="_self">Create exam</a> <a
 						href="${pageContext.request.contextPath }/exam_registration"
 						target="_self">Exam registration</a>
 				</div>
@@ -138,31 +142,33 @@
 
 						<p>
 							<label for="name">Subject name</label> <input name="name"
-								type="text" placeholder="Subject name:(Required)" minlength="3" maxlength = "50" value="${subject.name}"/> <span
-								class="val_name"></span>
+								type="text" placeholder="Subject name:(Required)" minlength="2"
+								maxlength="50" value="${subject.name}" /> <span class="val_name"></span>
 						</p>
 						<p>
 							<label for="description">Description</label> <input
 								name="description" type="text"
-								placeholder="Description(Required)" minlength="3" maxlength = "200" value="${subject.description}"/> <span
+								placeholder="Description(Required)" minlength="3"
+								maxlength="200" value="${subject.description}" /> <span
 								class="val_description"></span>
 						</p>
 						<p>
 							<label for="yearOfStudy">Year of study</label> <input
 								name="yearOfStudy" type="number" min="1" max="4"
-								placeholder="Year of study(Required)" value="${subject.yearOfStudy}"/> <span
-								class="val_yearOfStudy"></span>
+								placeholder="Year of study(Required)"
+								value="${subject.yearOfStudy}" /> <span class="val_yearOfStudy"></span>
 						</p>
-						<p><label for="semester">Semester</label>
-							<select name="semester">
+						<p>
+							<label for="semester">Semester</label> <select name="semester">
 								<option value="WINTER">WINTER</option>
 								<option value="SUMMER">SUMMER</option>
 
 							</select>
 						</p>
 						<p></p>
-						<p><label for="professors">Professors</label>
-							<select name="list" multiple>
+						<p>
+							<label for="professors">Professors</label> <select name="list"
+								multiple>
 								<c:forEach var="tempProfessor" items="${professors}">
 
 									<option value="${tempProfessor.id} ">${tempProfessor.firstName}

@@ -29,5 +29,8 @@ public class StudentsService {
 		 studentsDao.deleteStudent(id);
 	}
 	
+	public  List<Student> getPaginated(int page, int number){
+		return studentsDao.getPaginated(page, number);
+	}
 	
 }

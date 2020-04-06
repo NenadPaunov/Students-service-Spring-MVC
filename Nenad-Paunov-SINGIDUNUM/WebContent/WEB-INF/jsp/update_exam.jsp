@@ -40,7 +40,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -85,8 +90,7 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
-						<a
+						target="_self">Create exam</a> <a
 						href="${pageContext.request.contextPath }/exam_registration"
 						target="_self">Exam registration</a>
 				</div>
@@ -138,15 +142,14 @@
 						<p class="wrong_date_exam">${message}</p>
 
 						<p>
-							<input type="hidden" name="examName"
-								value="${exam.examName}" />
+							<input type="hidden" name="examName" value="${exam.examName}" />
 						</p>
-						
+
 						<p>
 							<input type="hidden" name="subjectId"
 								value="${subject.subjectId}" />
 						</p>
-						
+
 						<p>
 							<label for="examDate">Exam date</label> <input name="examDate"
 								type="date" placeholder="Exam date(Required)"
@@ -154,13 +157,13 @@
 								required /> <span class="val_examDate"></span>
 						</p>
 						<p>
-							<label for="espb">ESPB</label> <input name="espb"
-								type="number" placeholder="ESPB(Required)" value="${exam.espb}"
-								min="1" max="10" required /> <span class="val_espb"></span>
+							<label for="espb">ESPB</label> <input name="espb" type="number"
+								placeholder="ESPB(Required)" value="${exam.espb}" min="1"
+								max="10" required /> <span class="val_espb"></span>
 						</p>
 
-						<p><label for="professor">Professors</label>
-							<select name="id">
+						<p>
+							<label for="professor">Professors</label> <select name="id">
 								<c:forEach var="tempProfessor" items="${professors}">
 
 									<option value="${tempProfessor.id} ">${tempProfessor.firstName}

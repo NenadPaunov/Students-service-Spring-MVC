@@ -33,7 +33,12 @@
 <body>
 	<section id="wrapper">
 		<header id="header">
-
+			<div class="logoutLblPos" style="float: right">
+				<c:url var="logoutUrl" value="/logout" />
+				<form align="right" name="form1" action="${logoutUrl}" method="post">
+					<input type="submit" value="Log out" />
+				</form>
+			</div>
 			<div id="titlePage">
 				<h2>Students service</h2>
 			</div>
@@ -147,7 +152,7 @@
 								<td>${professor.lastName}</td>
 								<td>${professor.email}</td>
 								<td>${professor.address}</td>
-								<td>${professor.city}</td>
+								<td>${professor.city.cityName}</td>
 								<td>${professor.phone}</td>
 								<td>${professor.reelectionDate}</td>
 
