@@ -97,8 +97,7 @@ public class Student extends Person {
 
 	@Override
 	public String toString() {
-		return super.toString()+" Student [indexNumber=" + indexNumber + ", currentYearOfStudy=" + currentYearOfStudy + ", subjects="
-				+ subjects + ", exams=" + exams + "]";
+		return super.toString()+" " + indexNumber;
 	}
 	
 	

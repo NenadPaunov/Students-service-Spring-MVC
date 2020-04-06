@@ -34,6 +34,13 @@ public class CitiesController {
 		return "cities";
 	}
 
+	@RequestMapping("/city_details/{cityId}")
+	public String showCityDetails(@PathVariable int cityId, Model model) {
+		City city = citiesService.getCity(cityId);
+		model.addAttribute("city", city);
+		return "city_details";
+	}
+	
 	@RequestMapping("/create_city")
 	public String createCity(Model model) {
 		List<Country> countries = countriesService.getAllCountries();

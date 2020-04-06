@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import nenad.paunov.singidunum.entities.Person;
+import nenad.paunov.singidunum.entities.Professor;
 import nenad.paunov.singidunum.entities.Title;
 
 @Transactional
@@ -30,6 +32,9 @@ public class TitlesDao {
 	}
 
 	public void deleteTitle(int id) {
+		for (Professor professor : getTitle(id).getProfessors()) {
+			professor.setTitle(null);
+		}
 			session.getCurrentSession().delete(session.getCurrentSession().get(Title.class, id));
 	}
 }

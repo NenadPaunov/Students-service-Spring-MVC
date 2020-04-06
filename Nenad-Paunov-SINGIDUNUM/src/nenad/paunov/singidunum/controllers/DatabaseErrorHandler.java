@@ -1,14 +1,13 @@
 package nenad.paunov.singidunum.controllers;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 //@ControllerAdvice
 public class DatabaseErrorHandler {
 
-	@ExceptionHandler(DataAccessException.class)
-	public String handleDatabaseException(DataAccessException e) {
+	@ExceptionHandler(Exception.class)
+	public String handleDatabaseException(Exception e) {
 		return "error";
 	}
 }

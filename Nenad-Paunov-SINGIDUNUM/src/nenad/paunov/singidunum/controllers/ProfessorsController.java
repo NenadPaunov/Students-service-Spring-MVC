@@ -1,6 +1,7 @@
 package nenad.paunov.singidunum.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import nenad.paunov.singidunum.entities.City;
+import nenad.paunov.singidunum.entities.Exam;
 import nenad.paunov.singidunum.entities.Professor;
 import nenad.paunov.singidunum.entities.Student;
+import nenad.paunov.singidunum.entities.Subject;
 import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.CitiesService;
 import nenad.paunov.singidunum.services.ProfessorsService;
@@ -36,6 +39,17 @@ public class ProfessorsController {
 		List<Professor> professors = professorsServices.getAllProfessors();
 		model.addAttribute("professors",professors);
 		return "professors";		
+	}
+	
+	@RequestMapping("/professor_details/{id}")
+	public String showProfessorDetails(@PathVariable int id, Model model) {
+		Professor professor = professorsServices.getProfessor(id);
+		Set<Subject> subjects = professor.getSubjects();
+		model.addAttribute("subjects", subjects);
+		List<Exam> exams = professor.getExams();
+		model.addAttribute("exams", exams);
+		model.addAttribute("professor",professor);
+		return "professor_details";		
 	}
 	
 	@RequestMapping("/create_professor")

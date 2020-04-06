@@ -86,7 +86,9 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
+						target="_self">Create exam</a> <a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -132,10 +134,9 @@
 
 						<p class="validate_msg">Please fix the errors below!</p>
 
-						<p class="wrong_date_exam" >${message}</p>
+						<p class="wrong_date_exam">${message}</p>
 						<p>
-
-							<select name="subjectId">
+							<label for="subject">Subjects</label> <select name="subjectId">
 								<c:forEach var="tempSubject" items="${subjects}">
 
 									<option value="${tempSubject.subjectId} ">${tempSubject.name}</option>

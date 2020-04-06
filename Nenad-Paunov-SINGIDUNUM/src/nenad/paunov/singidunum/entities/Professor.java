@@ -81,7 +81,7 @@ public class Professor extends Person {
 	}
 	@Override
 	public String toString() {
-		return super.toString()+ "Professor [reelectionDate=" + reelectionDate + ", title=" + title;
+		return super.toString()+ ", reelectionDate: " + reelectionDate + ", " + title;
 	}
 	
 	

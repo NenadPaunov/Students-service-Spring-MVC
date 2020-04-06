@@ -10,6 +10,7 @@
 		<config>WebContent/WEB-INF/Dispatcher-servlet.xml</config>
 		<config>src/nenad/paunov/singidunum/config/aplicationContext.xml</config>
 		<config>src/nenad/paunov/singidunum/config/service-context.xml</config>
+		<config>src/nenad/paunov/singidunum/config/security-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

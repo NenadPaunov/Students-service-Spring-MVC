@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Country;
+import nenad.paunov.singidunum.entities.Person;
 
 @Component
 @Transactional
@@ -30,6 +32,9 @@ public class CountriesDao {
 	}
 
 	public void deleteCountry(int id) {
+		for (City city : getCountry(id).getCities()) {
+			city.setCountry(null);
+		}
 			session.getCurrentSession().delete(session.getCurrentSession().get(Country.class, id));
 	}
 }

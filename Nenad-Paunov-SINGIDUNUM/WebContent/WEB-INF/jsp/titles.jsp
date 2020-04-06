@@ -87,6 +87,9 @@
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -152,7 +155,7 @@
 									<tr>
 										<td>${tempTitle.titleName}</td>
 										<td><a
-											href="${pageContext.request.contextPath }/createtitle"
+											href="${pageContext.request.contextPath }/title_details/${tempTitle.titleId}"
 											target="_self" class="fullscreen" title="See all details"
 											data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
 										</td>

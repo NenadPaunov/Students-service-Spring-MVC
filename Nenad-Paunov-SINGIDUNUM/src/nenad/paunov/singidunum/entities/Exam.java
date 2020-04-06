@@ -105,7 +105,7 @@ public class Exam {
 	}
 	@Override
 	public String toString() {
-		return "examName=" + examName + ", espb=" + espb + ", examDate=" + examDate;
+		return "examName: " + examName + ", espb: " + espb + ", examDate: " + examDate;
 	}
 	
 	

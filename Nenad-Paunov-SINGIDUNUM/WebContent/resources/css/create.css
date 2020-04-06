@@ -9,13 +9,14 @@
 	-webkit-border-radius:10px;
 }
 div#wrap2 {
-    border: 2px solid #CCCCCC;
+    border: 3px solid #CCCCCC;
     margin-bottom: 10px;
     padding:15px;
 }
 h2.free_account {
     color: #3399FF;
     display: block;
+    font-weight: bold;
     margin-bottom: 25px;
 }
 form#register_form label { 

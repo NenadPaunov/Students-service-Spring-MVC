@@ -153,8 +153,30 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return "Subject [subjectId=" + subjectId + ", name=" + name + ", description=" + description + ", yearOfStudy="
-				+ yearOfStudy + ", semester=" + semester + ", students=" + students + ", professor=" + professor + "]";
+		return "Subject: " + name + ", description:" + description + ", yearOfStudy: "
+				+ yearOfStudy + ", semester:" + semester;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + subjectId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (subjectId != other.subjectId)
+			return false;
+		return true;
 	}
 	
 	

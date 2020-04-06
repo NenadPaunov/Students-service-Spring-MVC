@@ -86,6 +86,9 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -161,7 +164,7 @@
 								name=reelectionDate type="date" min="2020-04-01" max="2030-04-20" required value="${professor.reelectionDate}"/> <span
 								class="val_reelectionDate"></span>
 						</p>
-						<p>
+						<p><label for="city">City</label>
 							<select name="cityId">
 								<c:forEach var="tempCity" items="${cities}">
 
@@ -170,7 +173,7 @@
 								</c:forEach>
 							</select>
 						</p>
-						<p>
+						<p><label for="city">Title</label>
 							<select name="titleId">
 								<c:forEach var="tempTitle" items="${titles}">
 

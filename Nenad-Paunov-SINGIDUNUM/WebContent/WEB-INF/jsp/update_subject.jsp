@@ -87,6 +87,9 @@
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -134,7 +137,7 @@
 						<p class="validate_msg">Please fix the errors below!</p>
 
 						<p>
-							<label for="name">Subject name:</label> <input name="name"
+							<label for="name">Subject name</label> <input name="name"
 								type="text" placeholder="Subject name:(Required)" minlength="3" maxlength = "50" value="${subject.name}"/> <span
 								class="val_name"></span>
 						</p>
@@ -145,12 +148,12 @@
 								class="val_description"></span>
 						</p>
 						<p>
-							<label for="yearOfStudy">Year of study:</label> <input
+							<label for="yearOfStudy">Year of study</label> <input
 								name="yearOfStudy" type="number" min="1" max="4"
 								placeholder="Year of study(Required)" value="${subject.yearOfStudy}"/> <span
 								class="val_yearOfStudy"></span>
 						</p>
-						<p>
+						<p><label for="semester">Semester</label>
 							<select name="semester">
 								<option value="WINTER">WINTER</option>
 								<option value="SUMMER">SUMMER</option>
@@ -158,8 +161,8 @@
 							</select>
 						</p>
 						<p></p>
-						<p>
-							<select name="id" multiple>
+						<p><label for="professors">Professors</label>
+							<select name="list" multiple>
 								<c:forEach var="tempProfessor" items="${professors}">
 
 									<option value="${tempProfessor.id} ">${tempProfessor.firstName}

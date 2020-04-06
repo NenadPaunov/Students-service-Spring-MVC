@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nenad.paunov.singidunum.entities.Country;
 import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.TitlesService;
 
@@ -27,6 +28,14 @@ public class TitlesController {
 		model.addAttribute("titles",titles);
 		return "titles";		
 	}
+	
+	@RequestMapping("/title_details/{titleId}")
+	public String showTitleDetails(@PathVariable int titleId, Model model) {
+		Title title = titlesService.getTitle(titleId);
+		model.addAttribute("title", title);
+		return "title_details";
+	}
+	
 	
 	@RequestMapping("/create_title")
 	public String createTitle(Model model){	

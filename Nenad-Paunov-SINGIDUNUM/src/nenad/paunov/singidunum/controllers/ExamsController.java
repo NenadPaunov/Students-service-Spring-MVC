@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Exam;
 import nenad.paunov.singidunum.entities.Professor;
 import nenad.paunov.singidunum.entities.Student;
@@ -42,6 +41,19 @@ public class ExamsController {
 		List<Exam> exams = examsService.getAllExams();
 		model.addAttribute("exams", exams);
 		return "exams";
+	}
+
+	@RequestMapping("/exam_details/{examId}")
+	public String showExamDetails(@PathVariable int examId, Model model) {
+		Exam exam = examsService.getExam(examId);
+		model.addAttribute("exam", exam);
+		Professor professor = exam.getProfessor();
+		model.addAttribute("professor", professor);
+		Set<Student> students = exam.getStudents();
+		model.addAttribute("students", students);
+		Subject subject = exam.getSubject();
+		model.addAttribute("subject", subject);
+		return "exam_details";
 	}
 
 	@RequestMapping("/create_exam")
@@ -138,16 +150,16 @@ public class ExamsController {
 	}
 
 	// Exam registration
-	@RequestMapping("/test")
+	@RequestMapping("/exam_registration")
 	public String createExamRegistration(Model model) {
 		List<Subject> subjects = subjectService.getAllSubjects();
 		model.addAttribute("subjects", subjects);
 		List<Student> students = studentsService.getAllStudents();
 		model.addAttribute("students", students);
-		return "test";
+		return "exam_registration";
 	}
 
-	@RequestMapping(value = "/test2", method = RequestMethod.POST)
+	@RequestMapping(value = "/exam_registration2", method = RequestMethod.POST)
 	public String createExamRegistration(Model model, Subject subject, Student student) {
 		Subject subjectDatabase = subjectService.getSubject(subject.getSubjectId());
 		Exam exam = examsService.getExamByName(subjectDatabase.getName());
@@ -158,7 +170,7 @@ public class ExamsController {
 			model.addAttribute("subjects", subjects);
 			List<Student> students = studentsService.getAllStudents();
 			model.addAttribute("students", students);
-			return "test";
+			return "exam_registration";
 		}
 		Student studentDatabase = studentsService.getStudent(student.getId());
 		if (studentDatabase.getCurrentYearOfStudy() <= subjectDatabase.getYearOfStudy()) {
@@ -168,17 +180,17 @@ public class ExamsController {
 			model.addAttribute("subjects", subjects);
 			List<Student> students = studentsService.getAllStudents();
 			model.addAttribute("students", students);
-			return "test";
+			return "exam_registration";
 		}
 		Set<Student> students = new HashSet<Student>();
 		students.add(studentDatabase);
 		exam.setStudents(students);
 		examsService.saveOrUpdateExam(exam);
-		String message = "You have successfully registrated exam for" + studentDatabase.getFirstName() + " "
-				+ studentDatabase.getLastName();
+		String message = "You have successfully registrated exam from " + exam.getExamName() + " for student: "
+				+ studentDatabase.getFirstName() + " " + studentDatabase.getLastName();
 		model.addAttribute("message", message);
 		model.addAttribute("exam", exam);
-		return "test";
+		return "exam_registration2";
 
 	}
 

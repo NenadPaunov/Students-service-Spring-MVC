@@ -15,127 +15,153 @@
 	margin-left: 10px;
 }
 
-body{
-	background:#CCCCCC;
+body {
+	background: #CCCCCC;
 	background: url(../images/brickwall.png);
-	font-family:"Open Sans",sans-serif;
-	background-attachment:fixed;
-	background-repeat:repeat;
+	font-family: "Open Sans", sans-serif;
+	background-attachment: fixed;
+	background-repeat: repeat;
 }
-#wrapper{
-	background:rgba(255, 255, 255, 0.7);
-	margin:0 auto;
+
+#wrapper {
+	background: rgba(255, 255, 255, 0.7);
+	margin: 0 auto;
 	width: 960px;
-	padding:15px;
-	
+	padding: 15px;
 }
-#header{
-	background:#C51417;
-	overflow:hidden;
-	margin:0 0 10px 0;
+
+#header {
+	background: #C51417;
+	overflow: hidden;
+	margin: 0 0 10px 0;
 }
-#nav{
-	background:#333333;
-}
-#main{
-	float:none;	
-	width: 700px;
-	margin:50px 0 50px 50px;
-}
-#footer{
+
+#nav {
 	background: #333333;
-	clear:both;
 }
-#titlePage{
-	float:right;
-	color:white;
+
+#main {
+	float: none;
+	width: 700px;
+	margin: 50px 0 50px 50px;
+}
+
+#footer {
+	background: #333333;
+	clear: both;
+}
+
+#titlePage {
+	float: right;
+	color: white;
 	padding-right: 20px;
 }
-#nav ul{
-	list-style:none;
-	padding:0;
-	margin:0;
+
+#nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
-#nav ul li{
+
+#nav ul li {
 	float: left;
-	
 }
-#nav ul li a{
+
+#nav ul li a {
 	padding: 10px;
 	display: block;
 	text-decoration: none;
-	font-size:14px;
+	font-size: 14px;
 }
-#nav ul li a:link,
-#nav ul li a:visited{
-	color:#ffffff;
+
+#nav ul li a:link, #nav ul li a:visited {
+	color: #ffffff;
 }
+
 #nav ul li a:hover {
-	background-color:#C51417;
+	background-color: #C51417;
 }
 
 #nav ul li a:active {
-	color:#000000;
+	color: #000000;
 }
-#parag{
-	padding:10px;
-	text-align:center;
-	color:white;
-	margin:0;
+
+#parag {
+	padding: 10px;
+	text-align: center;
+	color: white;
+	margin: 0;
 }
-#nav ul li{
- margin:10px;
+
+#nav ul li {
+	margin: 10px;
 }
-.wrong_date_exam{
+
+#error_page {
 	color: red;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.wrong_date_exam {
+	color: red;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: aller;
+}
+
+#exam_registrated_message {
+	color: #3399FF;
 	font-size: 16px;
 	font-weight: bold;
 }
 /* Style The Dropdown Button */
 .dropbtn {
-  background-color: #C51417;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+	background-color: #C51417;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #C51417;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #C51417;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+	background-color: #f1f1f1
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #333333;
+	background-color: #333333;
 }
 /* Table */
 .table-wrapper {
@@ -146,6 +172,13 @@ body{
 	background: #fff;
 	padding: 20px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.col-sm-8 {
+	color: #3399FF;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 15px;
 }
 
 .table-title {
@@ -238,5 +271,16 @@ table.table .form-control.error {
 
 table.table td .add {
 	display: none;
+}
+
+table.table.table-bordered {
+	border: 2px solid red;
+	border-radius: 50px;
+	font-family: Georgia;
+}
+
+div.details-page-width {
+	width: 1500px;
+	height: 1500px;
 }
 /* End table tag */

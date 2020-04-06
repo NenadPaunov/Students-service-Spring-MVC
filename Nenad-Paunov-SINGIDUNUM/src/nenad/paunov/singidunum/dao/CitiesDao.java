@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import nenad.paunov.singidunum.entities.City;
+import nenad.paunov.singidunum.entities.Person;
 
 @Component
 @Transactional
@@ -30,6 +31,11 @@ public class CitiesDao {
 	}
 
 	public void deleteCity(int id) {
-			session.getCurrentSession().delete(session.getCurrentSession().get(City.class, id));
+		for (Person person : getCity(id).getPersons()) {
+			person.setCity(null);
+		}
+		session.getCurrentSession().delete(session.getCurrentSession().get(City.class, id));
+
 	}
+
 }

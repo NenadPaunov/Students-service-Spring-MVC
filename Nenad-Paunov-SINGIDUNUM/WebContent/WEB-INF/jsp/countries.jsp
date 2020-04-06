@@ -86,7 +86,9 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
-						target="_self">Create exam</a>
+						target="_self">Create exam</a> <a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -152,7 +154,7 @@
 									<tr>
 										<td>${tempCountry.name}</td>
 										<td><a
-											href="${pageContext.request.contextPath }/createprofessor"
+											href="${pageContext.request.contextPath }/country_details/${tempCountry.countryId}"
 											target="_self" class="fullscreen" title="See all details"
 											data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
 										</td>

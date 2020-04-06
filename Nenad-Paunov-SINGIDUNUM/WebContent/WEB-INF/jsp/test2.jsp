@@ -87,6 +87,9 @@
 						all exams</a> <a
 						href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">

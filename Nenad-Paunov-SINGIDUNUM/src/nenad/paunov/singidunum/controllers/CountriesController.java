@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Country;
 import nenad.paunov.singidunum.services.CountriesService;
 
@@ -28,6 +29,13 @@ public class CountriesController {
 		return "countries";
 	}
 
+	@RequestMapping("/country_details/{countryId}")
+	public String showCountryDetails(@PathVariable int countryId, Model model) {
+		Country country = countriesService.getCountry(countryId);
+		model.addAttribute("country", country);
+		return "country_details";
+	}
+	
 	@RequestMapping("/create_country")
 	public String createCountry(Model model) {
 		return "create_country";

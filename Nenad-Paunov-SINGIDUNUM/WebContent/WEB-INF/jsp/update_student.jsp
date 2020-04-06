@@ -86,6 +86,9 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -168,7 +171,7 @@
 								placeholder="Current year of study(Required)" value="${student.currentYearOfStudy}" min="1" max="7"/> <span
 								class="val_year"></span>
 						</p>
-						<p>
+						<p><label for="city">City</label>
 							<select name="cityId" >
 								<c:forEach var="tempCity" items="${cities}">
 

@@ -38,6 +38,15 @@ public class SubjectsController {
 		return "subjects";
 	}
 
+	@RequestMapping("/subject_details/{subjectId}")
+	public String showSubjectDetails(@PathVariable int subjectId, Model model) {
+		Subject subject = subjectsService.getSubject(subjectId);
+		model.addAttribute("subject", subject);
+		Set<Professor> professors = subject.getProfessor();
+		model.addAttribute("professors", professors);
+		return "subject_details";
+	}
+	
 	@RequestMapping("/create_subject")
 	public String createSubject(Model model) {
 		List<Professor> professors = professorsServices.getAllProfessors();
@@ -46,7 +55,8 @@ public class SubjectsController {
 	}
 
 	@RequestMapping(value = "/docreatesubject", method = RequestMethod.POST)
-	public String doCreate(Model model, @Valid Subject subject, Professor professor, BindingResult result) {
+	public String doCreate(Model model, @Valid Subject subject, @RequestParam ArrayList<Integer> list,
+			Professor professor, BindingResult result) {
 		if (result.hasErrors()) {
 			System.out.println("Form is not valid");
 			List<ObjectError> errors = result.getAllErrors();
@@ -58,15 +68,17 @@ public class SubjectsController {
 			System.out.println("Form validated successsfully!");
 		}
 		Set<Professor> profs = new HashSet<Professor>();
-		Professor newProfessor = professorsServices.getProfessor(professor.getId());
-		profs.add(newProfessor);
+		for (Integer profId : list) {
+			Professor newProfessor = professorsServices.getProfessor(profId);
+			profs.add(newProfessor);
+		}
 		subject.setProfessor(profs);
 		subjectsService.saveOrUpdateSubject(subject);
 		model.addAttribute("subject", subject);
 		return "subject_created";
 	}
-	
-	@RequestMapping(value ="/doupdatesubject/{subjectId}")
+
+	@RequestMapping(value = "/doupdatesubject/{subjectId}")
 	public String updateSubject(@PathVariable int subjectId, Model model) {
 		Subject subject = subjectsService.getSubject(subjectId);
 		List<Professor> professors = professorsServices.getAllProfessors();
@@ -75,9 +87,10 @@ public class SubjectsController {
 		model.addAttribute("subjectId", subjectId);
 		return "update_subject";
 	}
-	
+
 	@RequestMapping(value = "/updatesubject/{subjectId}", method = RequestMethod.POST)
-	public String doUpdate(@PathVariable int subjectId, @RequestParam ArrayList<Integer> list, Model model, @Valid Subject subject, Professor professor, BindingResult result) {
+	public String doUpdate(@PathVariable int subjectId, @RequestParam ArrayList<Integer> list, Model model,
+			@Valid Subject subject, Professor professor, BindingResult result) {
 		if (result.hasErrors()) {
 			System.out.println("Form is not valid");
 			List<ObjectError> errors = result.getAllErrors();
@@ -88,18 +101,18 @@ public class SubjectsController {
 		} else {
 			System.out.println("Form validated successsfully!");
 		}
-		//Izvuci iz liste id-eve profesora
 		Set<Professor> profs = new HashSet<Professor>();
-		Professor newProfessor = professorsServices.getProfessor(professor.getId());
-		profs.add(newProfessor);
+		for (Integer profId : list) {
+			Professor newProfessor = professorsServices.getProfessor(profId);
+			profs.add(newProfessor);
+		}
 		subject.setProfessor(profs);
 		subjectsService.saveOrUpdateSubject(subject);
 		model.addAttribute("subject", subject);
 		return "subject_created";
 	}
-	
-	
-	@RequestMapping(value ="/dodeletesubject/{id}")
+
+	@RequestMapping(value = "/dodeletesubject/{id}")
 	public String deleteSubject(@PathVariable int id, Model model) {
 		subjectsService.deleteSubject(id);
 		List<Subject> subjects = subjectsService.getAllSubjects();

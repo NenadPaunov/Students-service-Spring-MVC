@@ -86,6 +86,9 @@
 					<a href="${pageContext.request.contextPath }/exams" target="_self">Show
 						all exams</a> <a href="${pageContext.request.contextPath }/create_exam"
 						target="_self">Create exam</a>
+						<a
+						href="${pageContext.request.contextPath }/exam_registration"
+						target="_self">Exam registration</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -143,7 +146,7 @@
 								placeholder="ZIP code(Required)" minlength="2" maxlength = "10" value="${city.zipCode}" /> <span
 								class="val_zipCode"></span>
 						</p>
-						<p>
+						<p><label for="country">Country</label>
 							<select name="countryId">
 								<c:forEach var="tempCountry" items="${countries}">
 

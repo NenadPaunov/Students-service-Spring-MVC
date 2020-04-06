@@ -1,5 +1,6 @@
 package nenad.paunov.singidunum.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -36,7 +37,10 @@ public class ExamsDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Exam> getExamsByName(String examName) {
-		return session.getCurrentSession().createQuery("FROM Exam WHERE examName=:examName").setParameter("examName", examName).list();
+		return session.getCurrentSession().createQuery("FROM Exam WHERE examName=:examName AND examDate>:examDate")
+				.setParameter("examName", examName)
+				.setParameter("examDate", java.sql.Date.valueOf(LocalDate.now()))
+				.list();
 		
 	}
 	
