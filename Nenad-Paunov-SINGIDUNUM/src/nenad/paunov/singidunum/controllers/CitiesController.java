@@ -25,6 +25,7 @@ public class CitiesController {
 	@Autowired
 	private CountriesService countriesService;
 
+	
 	@RequestMapping("/cities")
 	public String showCities(Model model) {
 		List<City> cities = citiesService.getAllCities();
