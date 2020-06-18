@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,11 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Exam;
-import nenad.paunov.singidunum.entities.Professor;
 import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Subject;
 import nenad.paunov.singidunum.services.CitiesService;
-import nenad.paunov.singidunum.services.ExamsService;
 import nenad.paunov.singidunum.services.StudentsService;
 import nenad.paunov.singidunum.services.SubjectsService;
 
@@ -115,8 +111,6 @@ public class StudentsController {
 	@RequestMapping(value = "/doaddsubject/{id}")
 	public String doAddSubject(@PathVariable int id, Model model) {
 		Student student = studentsServices.getStudent(id);
-		// Proci kroz listu i dodati samo one subjekte koji nisu isti po imenu
-		//
 		List<Subject> allSubjects = subjectsServices.getAllSubjects();
 		Set<Subject> convertedSubjects = allSubjects.stream().collect(Collectors.toSet());
 		Set<Subject> studentsSubjects = student.getSubjects();

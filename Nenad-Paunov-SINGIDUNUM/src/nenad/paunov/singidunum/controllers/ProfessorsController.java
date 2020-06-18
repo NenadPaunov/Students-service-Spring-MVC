@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Exam;
 import nenad.paunov.singidunum.entities.Professor;
-import nenad.paunov.singidunum.entities.Student;
 import nenad.paunov.singidunum.entities.Subject;
 import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.CitiesService;
 import nenad.paunov.singidunum.services.ProfessorsService;
-import nenad.paunov.singidunum.services.StudentsService;
 import nenad.paunov.singidunum.services.TitlesService;
 
 @Controller

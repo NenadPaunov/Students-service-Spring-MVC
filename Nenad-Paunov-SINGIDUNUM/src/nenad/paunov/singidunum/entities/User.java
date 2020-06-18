@@ -1,28 +1,35 @@
 package nenad.paunov.singidunum.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
 public class User {
 
 	@Id
+	@NotNull
+	@Column(unique = true)
 	private String username;
+	@NotNull
 	private String password;
+	@NotNull
+	@Column(unique = true)
 	private String email;
 	private boolean enabled = true;
+	@OneToOne(cascade = CascadeType.ALL,mappedBy="user")
+	//@PrimaryKeyJoinColumn 
+	private Authority user_authority;
 
 	public User() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public User(String username, String password, String email, boolean enabled) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.enabled = enabled;
 	}
 
 	public String getUsername() {
@@ -57,10 +64,21 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	
+
+	public Authority getUser_authority() {
+		return user_authority;
+	}
+
+	public void setUser_authority(Authority user_authority) {
+		this.user_authority = user_authority;
+	}
+
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", email=" + email + ", enabled=" + enabled
-				+ "]";
+				+ ", authority=" + user_authority + "]";
 	}
+	
 
 }

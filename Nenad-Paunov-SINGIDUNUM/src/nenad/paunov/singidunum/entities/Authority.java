@@ -1,7 +1,11 @@
 package nenad.paunov.singidunum.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -9,25 +13,33 @@ import javax.persistence.Table;
 public class Authority {
 
 	@Id
-	private String username;
+	@Column(name="username")
+	private String authUsername;
 	private String authority;
+	@OneToOne
+	//@JoinColumn(name="username")
+	//@MapsId
+	private User user;
 
 	public Authority() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Authority(String username, String authority) {
-		super();
-		this.username = username;
-		this.authority = authority;
+
+	public String getAuthUsername() {
+		return authUsername;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setAuthUsername(String authUsername) {
+		this.authUsername = authUsername;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getAuthority() {
@@ -38,9 +50,12 @@ public class Authority {
 		this.authority = authority;
 	}
 
+
 	@Override
 	public String toString() {
-		return this.username + " " + this.authority;
+		return "Authority [authUsername=" + authUsername + ", authority=" + authority + "]";
 	}
+
+	
 
 }

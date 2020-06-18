@@ -6,12 +6,10 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/static/css/create.css"
-	type="text/css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home</title>
+<title>Users</title>
 <base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
@@ -27,16 +25,20 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/city.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-</script>
-<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
+<script type="text/javascript">
+	function confirmDelete(x) {
+	      var r = confirm("Are you sure about deleting this student?");
+	      if (r == true) {
+	          window.location.pathname = "${pageContext.request.contextPath}/dodeletestudent/"+x;
+	      }	   
+	    }
+
+</script>
+</head>
 <body>
 	<section id="wrapper">
 		<header id="header">
@@ -55,9 +57,6 @@
 				<button class="dropbtn">Home</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/" target="_self">Home</a>
-					<a href="${pageContext.request.contextPath }/create_account"
-						target="_self">Create new User</a> <a
-						href="${pageContext.request.contextPath }/users" target="_self">Users</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -128,8 +127,70 @@
 
 		</div>
 		<div id="main">
+			<div class="container">
+				<div class="table-wrapper">
+					<div class="table-title">
+						<div class="row">
+							<div class="col-sm-8">
+								<h2>
+									<b> Students details</b>
+								</h2>
+							</div>
+							<div class="col-sm-4">
+								<a href="${pageContext.request.contextPath }/create_account"
+									target="_self"><button type="button"
+										class="btn btn-info add-new">
+										<i class="fa fa-plus"></i> Add New
+									</button> </a>
+							</div>
+						</div>
+					</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>User name</th>
+								<th>Email</th>
+								<th>Authority</th>
+								<th>Password</th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<c:forEach var="tempUser" items="${users}">
+									<tr>
+										<td>${tempUser.username}</td>
+										<td>${tempUser.email}</td>
+										<td>${tempUser.user_authority.authority}</td>
+										<td>${tempUser.password}</td>
+										<td><a
+											href="${pageContext.request.contextPath}/doupdatestudent/${tempUser.username}"
+											class="edit" title="Edit" data-toggle="tooltip"><i
+												class="material-icons">&#xE254;</i></a></td>
+										<td><a class="
+									delete" title="Delete"
+											data-toggle="tooltip"
+											onclick="confirmDelete(${tempUser.username})"><i
+												class="material-icons">&#xE872;</i></a></td>
+									</tr>
+								</c:forEach>
 
-			<img src="service.jpg" alt="hero" title="hero">
+							</tr>
+
+						</tbody>
+					</table>
+					<form>
+						<input class="form-control" type="text" id="num" value="${num}">
+						<button style="background-color: red" class="btn btn-success"
+							type="submit">submit</button>
+					</form>
+					<c:forEach var="i" begin="1" end="${pages }" step="1">
+						<a href="${pageContext.request.contextPath}/students/${i}/${num}">${i}</a>
+					</c:forEach>
+
+				</div>
+			</div>
 
 		</div>
 		<footer id="footer">
@@ -137,5 +198,20 @@
 		</footer>
 
 	</section>
+	<script>
+	   window
+       .addEventListener(
+               'load',
+               function() {
+                   document
+                           .getElementById("num")
+                           .addEventListener(
+                                   "change",
+                                   function(e) {
+                                       window.location.href = "${pageContext.request.contextPath}/students/1/"
+                                               + document
+                                                       .getElementById("num").value;
+                                   });
+               });</script>
 </body>
 </html>

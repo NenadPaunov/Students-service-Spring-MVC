@@ -15,24 +15,18 @@ public class UsersService {
 	private UserDAO userDao;
 
 	public List<User> getAllUsers() {
-		return userDao.listUsers();
+		return userDao.getAllUsers();
 	}
 
-	public User createNewUser(User c) {
-		return userDao.addUser(c);
+	public User saveOrUpdateUser(User user) {
+		return userDao.saveOrUpdateUser(user);
 	}
 
-	public void updateUser(User c) {
-		userDao.update(c);
-		System.out.println("Updated User!");
-	}
-
-	public User getOneUser(int id) {
+	public User getUser(int id) {
 		return userDao.getUserById(id);
 	}
 
 	public void deleteUser(int id) {
 		userDao.removeUser(id);
-		System.out.println("Deleted User!");
 	}
 }

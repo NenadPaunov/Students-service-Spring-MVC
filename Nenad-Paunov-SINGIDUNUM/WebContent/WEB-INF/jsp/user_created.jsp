@@ -6,13 +6,12 @@
 <head>
 <link href="${pageContext.request.contextPath}/static/css/main.css"
 	type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/static/css/create.css"
-	type="text/css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home</title>
-<base href="${pageContext.request.contextPath}/static/images/">
+<title>User created</title>
+<base href="${pageContext.request.contextPath}/static/images/"
+	target="_blank">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -27,16 +26,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/city.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-</script>
-<meta name="robots" content="noindex,nofollow" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
+</head>
 <body>
 	<section id="wrapper">
 		<header id="header">
@@ -55,9 +49,6 @@
 				<button class="dropbtn">Home</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/" target="_self">Home</a>
-					<a href="${pageContext.request.contextPath }/create_account"
-						target="_self">Create new User</a> <a
-						href="${pageContext.request.contextPath }/users" target="_self">Users</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -128,8 +119,38 @@
 
 		</div>
 		<div id="main">
+			<div class="container">
+				<div class="table-wrapper">
+					<div class="table-title">
+						<div class="row">
+							<div class="col-sm-8">
+								<h2>
+									<b>User has been successfully created</b>
+								</h2>
+							</div>
 
-			<img src="service.jpg" alt="hero" title="hero">
+						</div>
+					</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>First name</th>
+								<th>Password</th>
+								<th>Email</th>
+								<th>Authority</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>${user.username}</td>
+								<td>${user.password}</td>
+								<td>${user.email}</td>
+								<td>${authority.authority}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
 		</div>
 		<footer id="footer">

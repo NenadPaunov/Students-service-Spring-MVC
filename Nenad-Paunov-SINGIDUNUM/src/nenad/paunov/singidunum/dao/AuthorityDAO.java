@@ -18,38 +18,24 @@ public class AuthorityDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public Authority saveOrUpdateAuthority(Authority authority) {
+		sessionFactory.getCurrentSession().saveOrUpdate(authority);
+		;
+		return authority;
 	}
 
-	public Authority addAuthority(Authority c) {
-		Session s = this.sessionFactory.getCurrentSession();
-		s.save(c);
-		return c;
-	}
+	@SuppressWarnings("unchecked")
+	public List<Authority> getAllAuthorities() {
+		return sessionFactory.getCurrentSession().createQuery("FROM Authority").list();
 
-	public void update(Authority c) {
-		Session s = this.sessionFactory.getCurrentSession();
-		s.update(c);
-	}
-
-	public List<Authority> listAuthorities() {
-		Session s = this.sessionFactory.getCurrentSession();
-		List<Authority> list = s.createQuery("From Authority").list();
-		return list;
 	}
 
 	public Authority getAuthorityById(int id) {
-		Session s = this.sessionFactory.getCurrentSession();
-		Authority c = s.load(Authority.class, new Integer(id));
-		return c;
+		return sessionFactory.getCurrentSession().get(Authority.class, id);
 	}
 
 	public void removeAuthority(int id) {
-		Session s = this.sessionFactory.getCurrentSession();
-		Authority c = s.load(Authority.class, new Integer(id));
-		if (c != null) {
-			s.remove(c);
-		}
+		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(Authority.class, id));
+
 	}
 }

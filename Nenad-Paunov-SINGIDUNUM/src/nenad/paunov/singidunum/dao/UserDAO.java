@@ -18,38 +18,21 @@ public class UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public User saveOrUpdateUser(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		return user;
 	}
 
-	public User addUser(User c) {
-		Session s = this.sessionFactory.getCurrentSession();
-		s.save(c);
-		return c;
-	}
-
-	public void update(User c) {
-		Session s = this.sessionFactory.getCurrentSession();
-		s.update(c);
-	}
-
-	public List<User> listUsers() {
-		Session s = this.sessionFactory.getCurrentSession();
-		List<User> list = s.createQuery("From User").list();
-		return list;
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUsers() {
+		return sessionFactory.getCurrentSession().createQuery("FROM User").list();
 	}
 
 	public User getUserById(int id) {
-		Session s = this.sessionFactory.getCurrentSession();
-		User c = s.load(User.class, new Integer(id));
-		return c;
+		return sessionFactory.getCurrentSession().get(User.class, id);
 	}
 
 	public void removeUser(int id) {
-		Session s = this.sessionFactory.getCurrentSession();
-		User c = s.load(User.class, new Integer(id));
-		if (c != null) {
-			s.remove(c);
-		}
+		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(User.class, id));
 	}
 }

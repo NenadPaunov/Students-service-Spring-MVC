@@ -15,24 +15,18 @@ public class AuthorityService {
 	private AuthorityDAO AuthorityDao;
 
 	public List<Authority> getAllAuthorities() {
-		return AuthorityDao.listAuthorities();
+		return AuthorityDao.getAllAuthorities();
 	}
 
-	public Authority createNewAuthority(Authority c) {
-		return AuthorityDao.addAuthority(c);
+	public Authority saveOrUpdateAuthority(Authority authority) {
+		return AuthorityDao.saveOrUpdateAuthority(authority);
 	}
 
-	public void updateAuthority(Authority c) {
-		AuthorityDao.update(c);
-		System.out.println("Updated Authority!");
-	}
-
-	public Authority getOneAuthority(int id) {
+	public Authority getAuthorityById(int id) {
 		return AuthorityDao.getAuthorityById(id);
 	}
 
 	public void deleteAuthority(int id) {
 		AuthorityDao.removeAuthority(id);
-		System.out.println("Deleted Authority!");
 	}
 }

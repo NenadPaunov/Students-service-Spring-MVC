@@ -3,7 +3,7 @@ package nenad.paunov.singidunum.controllers;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class DatabaseErrorHandler {
 
 	@ExceptionHandler(Exception.class)

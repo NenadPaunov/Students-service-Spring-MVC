@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home</title>
+<title>Create student</title>
 <base href="${pageContext.request.contextPath}/static/images/">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">
@@ -27,7 +27,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/city.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
@@ -37,13 +36,14 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
+</head>
 <body>
 	<section id="wrapper">
 		<header id="header">
 			<div class="logoutLblPos" style="float: right">
 				<c:url var="logoutUrl" value="/logout" />
 				<form align="right" name="form1" action="${logoutUrl}" method="post">
-					<input type="submit" value="Log out" />
+					<label> <input type="submit" value="Log out" /></label>
 				</form>
 			</div>
 			<div id="titlePage">
@@ -55,9 +55,6 @@
 				<button class="dropbtn">Home</button>
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath }/" target="_self">Home</a>
-					<a href="${pageContext.request.contextPath }/create_account"
-						target="_self">Create new User</a> <a
-						href="${pageContext.request.contextPath }/users" target="_self">Users</a>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -129,7 +126,51 @@
 		</div>
 		<div id="main">
 
-			<img src="service.jpg" alt="hero" title="hero">
+			<div id="wrap">
+				<!--wrap start-->
+				<div id="wrap2">
+					<!--wrap2 start-->
+
+					<h2 class="free_account">Create account</h2>
+
+					<form action="${pageContext.request.contextPath }/docreateaccount"
+						method="post" id="register_form">
+
+						<p class="validate_msg">Please fix the errors below!</p>
+
+						<p>
+							<label for="username">User name</label> <input name="username"
+								type="text" placeholder="Username(Required)" minlength="3"
+								maxlength="20" /> <span class="val_username"></span>
+						</p>
+						<p>
+							<label for="password">Password</label> <input name="password"
+								type="password" placeholder="Password(Required)" minlength="3"
+								maxlength="30" /> <span class="val_password"></span>
+						</p>
+
+
+						<p>
+							<label for="authority">Authority</label> <select name="author">
+								<option value="admin">Admin</option>
+								<option value="user">User</option>
+							</select>
+						</p>
+
+						<p>
+							<label for="email">Email</label> <input name="email" type="email"
+								placeholder="name@gmail.com(Required)" maxlength="30" /> <span
+								class="val_email"></span>
+						</p>
+
+
+						<input type="submit" name="submit" value="Create new user">
+					</form>
+
+				</div>
+				<!--wrap2 end-->
+			</div>
+			<!--wrap1 end-->
 
 		</div>
 		<footer id="footer">
@@ -138,4 +179,5 @@
 
 	</section>
 </body>
+
 </html>

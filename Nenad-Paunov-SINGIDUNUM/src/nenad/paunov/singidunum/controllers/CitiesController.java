@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import nenad.paunov.singidunum.entities.City;
 import nenad.paunov.singidunum.entities.Country;
-import nenad.paunov.singidunum.entities.Student;
-import nenad.paunov.singidunum.entities.Title;
 import nenad.paunov.singidunum.services.CitiesService;
 import nenad.paunov.singidunum.services.CountriesService;
 
